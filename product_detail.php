@@ -25,13 +25,13 @@
 		<table  width="100%">
 			<tr style="color: orange" align="center">
 				<td>
-					<a href="admin.php">
-						<input type="button" name="admin_button" value="ADMIN">
-					</a>
-				</td>
-				<td width="100%" align="left">
 					<a href="dashboard.php">
 						<input type="button" name="dashboard_button" value="DASHBOARD">
+					</a>
+				</td>
+				<td>
+					<a href="admin.php">
+						<input type="button" name="admin_button" value="ADMIN">
 					</a>
 				</td>
 				<td width="100%" align="left">
