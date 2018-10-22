@@ -4,10 +4,20 @@
 <head>
 
 <title>WEB PAGE TITLE GOES HERE</title>
+<style>
+	.error {
+		color: #FF0000;
+	}
+</style>
 
 </head>
 
 <body style="margin: 0px; padding: 0px; font-family: 'Trebuchet MS',verdana;">
+
+<?php
+	$first_name = $last_name = $email = $password = $confirm_password ="";
+	$first_name_er = $last_name_er = $email_er = $password_er = $confirm_password_er="";
+?>
 
 <table width="100%" style="height: 100%;" cellpadding="10" cellspacing="0" border="0">
 <tr>
@@ -66,30 +76,40 @@
 
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
-		<form>
+		<form method="post" action="raf.php">
 			<table align="center">
 				<tr>
 					<td>
-						<p>Personal Information</p>
-						<p>First Name</p>
-						<input type="text" name="first_name">
+						<span class="error">* required field</span>
 					</td>
 				</tr>
+				<tr >
+					<td>
+						<p>Personal Information</p>
+						<hr>
+						<p>First Name</p>
+						<input type="text" name="first_name">
+						<span class="error">* <?php echo $first_name_er; ?></span>
+					</td>
+				</tr>
+
 				<tr>
 					<td>
 						<p>Last Name</p>
 						<input type="text" name="last_name">
 					</td>
 				</tr>
+				
 				<tr>
 					<td>
 						<p>
 							Sign-in Information
 						</p>
+						<hr>
 						<p>
 							Email*
 						</p>
-						<input type="Email" name="user_email">
+						<input type="Email" name="email">
 					</td>
 				</tr>
 				<tr>
