@@ -17,6 +17,74 @@
 <?php
 	$first_name = $last_name = $email = $password = $confirm_password ="";
 	$first_name_er = $last_name_er = $email_er = $password_er = $confirm_password_er="";
+	$flag="true";
+
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			  if (empty($_POST["first_name"])) {
+			    $first_name_er = "First name is required";  
+			    $flag="false";
+			  } else {
+			  		if (preg_match("/^[A-Z][a-zA-Z ]+$/",$_POST["first_name"]) === 0) {
+			  			$first_name_er = "Muust start with uppercase letter and only contain letter and dashes";
+			  			$flag="false";
+			  		}else{
+			  			
+			  		}
+			  }
+
+			  if (empty($_POST["last_name"])) {
+			    $last_name_er = "Last name is required";
+			    $flag="false";
+			  } else {
+			  		if (preg_match("/^[a-zA-Z ]+$/",$_POST["last_name"]) === 0) {
+			  			$last_name_er = "Only contain letter and dashes";
+			  			$flag="false";
+			  		}else{
+			  			//$name = test_input($_POST["name"]);
+			  		}
+			  }
+
+			  if (empty($_POST["email"])) {
+			    $email_er = "Email is required";
+			    $flag="false";
+			  } else {
+			   	/*
+				   	if ((preg_match("/^[a-zA-Z]w+(.w+)*@w+(.[0-9a-zA-Z]+)*.[a-zA-Z]{2,4}$/", $_POST["email"]) === 0) {
+				   		$email_er = "Email must be in valid form";
+				   		 $flag="false";
+				   	}
+			   	*/
+			  }
+
+			  if (empty($_POST["password"])) {
+			    $password_er = "Password is required";
+			    $flag="false";
+			  } else {
+			   		if (preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/",$_POST["password"]) == 0) {
+			  			$password_er = "Muust be in valid form";
+			  			$flag="false";
+			  		}else{
+			  		//	$name = test_input($_POST["name"]);
+			  		}
+			  }
+			  
+			  if (empty($_POST["confirm_password"])) {
+			    $confirm_password_er = "Confirm password is required";
+			    $flag="false";
+			  } else {
+			   	if ($_POST["password"] != $_POST["confirm_password"]) {
+			   		$confirm_password_er = "Password won't match!!";
+			   		 $flag="false";
+			   	}
+			  }
+			 if ($flag == "true") {
+			 	header("Location: raf.php"); /* Redirect browser */
+			 	exit();
+			  //	include("raf.php");
+			  } 
+			  else echo "Wrong";
+	}
+
 ?>
 
 <table width="100%" style="height: 100%;" cellpadding="10" cellspacing="0" border="0">
@@ -76,7 +144,7 @@
 
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
-		<form method="post" action="raf.php">
+		<form method="post" action="<?php $_SERVER["PHP_SELF"] ?>">
 			<table align="center">
 				<tr>
 					<td>
@@ -97,6 +165,7 @@
 					<td>
 						<p>Last Name</p>
 						<input type="text" name="last_name">
+						<span class="error">* <?php echo $last_name_er; ?></span>
 					</td>
 				</tr>
 				
@@ -109,7 +178,8 @@
 						<p>
 							Email*
 						</p>
-						<input type="Email" name="email">
+						<input type="email" name="email">
+						<span class="error">* <?php echo $email_er; ?> </span>
 					</td>
 				</tr>
 				<tr>
@@ -118,6 +188,7 @@
 							Password
 						</p>
 						<input type="Password" name="password">
+						<span class="error">* <?php echo $password_er; ?></span>
 					</td>
 				</tr>
 				<tr>
@@ -126,6 +197,7 @@
 							Confirm Password
 						</p>
 						<input type="Password" name="confirm_password">
+						<span class="error">* <?php echo $confirm_password_er; ?></span>
 					</td>
 				</tr>
 				<tr>
