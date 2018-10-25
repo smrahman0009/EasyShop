@@ -12,15 +12,12 @@
 
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
-
-		<h2>Users & Products Info: </h2>
-
-		<p>
-			This section will only be accessible by admin. Admin can view about products & registered customers details here.
-		</p>
+			<h2>Users Info: </h2>
+			<hr>
+		<iframe src="info/user_info.php" width="70%" height="60%" align="center"></iframe>
 		<br>
-
-
+		<h2>Product Info</h2>
+		<hr>
 	</td>
 
 	<!-- ============ RIGHT COLUMN (CONTENT) ============== -->
