@@ -37,6 +37,7 @@
 							<input type="button" name="log_in_button" value="log in">
 					</a>
 				</td>
+				
 			</tr>
 	
 		</table>
