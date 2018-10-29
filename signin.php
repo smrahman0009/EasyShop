@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$first_name_er = $last_name_er = $email_er = $password_er = $confirm_password_er="";
+	//$_SESSION["first_name_er"] = $_SESSION["last_name_er"] = $_SESSION["email_er"] = $_SESSION["password_er"] = $_SESSION["confirm_password_er"]="";
 ?>
 
 <?php
@@ -31,7 +31,7 @@
 						<hr>
 						<p>First Name</p>
 						<input type="text" name="first_name">
-						<span class="error">* <?php echo $first_name_er; ?></span>
+						<span class="error">* <?php echo $_SESSION["first_name_er"]; ?></span>
 					</td>
 				</tr>
 
@@ -39,7 +39,7 @@
 					<td>
 						<p>Last Name</p>
 						<input type="text" name="last_name">
-						<span class="error">* <?php echo $last_name_er; ?></span>
+						<span class="error">* <?php echo $_SESSION["last_name_er"]; ?></span>
 					</td>
 				</tr>
 				
@@ -53,7 +53,7 @@
 							Email*
 						</p>
 						<input type="email" name="email">
-						<span class="error">* <?php echo $email_er; ?> </span>
+						<span class="error">* <?php echo $_SESSION["email_er"]; ?> </span>
 					</td>
 				</tr>
 				<tr>
@@ -62,7 +62,7 @@
 							Password
 						</p>
 						<input type="Password" name="password">
-						<span class="error">* <?php echo $password_er; ?></span>
+						<span class="error">* <?php echo $_SESSION["password_er"]; ?></span>
 					</td>
 				</tr>
 				<tr>
@@ -71,7 +71,7 @@
 							Confirm Password
 						</p>
 						<input type="Password" name="confirm_password">
-						<span class="error">* <?php echo $confirm_password_er; ?></span>
+						<span class="error">* <?php echo $_SESSION["confirm_password_er"]; ?></span>
 					</td>
 				</tr>
 				<tr>

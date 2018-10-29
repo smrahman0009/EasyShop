@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+
+?>
+<?php
 	include 'include/header.php';
 ?>
 <!-- ============ NAVIGATION BAR SECTION ============== -->
@@ -12,7 +17,7 @@
 ?>
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
-		<form>
+		<form method="post" action="database_file/login_auth.php">
 			<table align="center">
 				<tr >
 					<td>
@@ -25,7 +30,7 @@
 						<p>
 						Password
 						</p>
-						<input type="text" name="user_password">
+						<input type="password" name="password">
 					</td>
 				</tr>
 				<tr>
@@ -49,5 +54,4 @@
 <?php
 	include 'include/footer.php';
 ?>
-
 

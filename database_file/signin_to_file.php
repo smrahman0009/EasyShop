@@ -8,11 +8,11 @@ function auth_user_info(){
 
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			  if (empty($_POST["first_name"])) {
-			    $first_name_er = "First name is required";  
+			    $_SESSION["first_name_er"] = "First name is required";  
 			    $flag="false";
 			  } else {
 			  		if (preg_match("/^[A-Z][a-zA-Z ]+$/",$_POST["first_name"]) === 0) {
-			  			$first_name_er = "Muust start with uppercase letter and only contain letter and dashes";
+			  			$_SESSION["first_name_er"] = "Muust start with uppercase letter and only contain letter and dashes";
 			  			$flag="false";
 			  		}else{
 			  			$_SESSION["first_name"] = $_POST["first_name"];
@@ -20,11 +20,11 @@ function auth_user_info(){
 			  }
 
 			  if (empty($_POST["last_name"])) {
-			    $last_name_er = "Last name is required";
+			    $_SESSION["last_name_er"] = "Last name is required";
 			    $flag="false";
 			  } else {
 			  		if (preg_match("/^[a-zA-Z ]+$/",$_POST["last_name"]) === 0) {
-			  			$last_name_er = "Only contain letter and dashes";
+			  			$_SESSION["last_name_er"] = "Only contain letter and dashes";
 			  			$flag="false";
 			  		}else{
 			  			$_SESSION["last_name"] = $_POST["last_name"];
@@ -32,7 +32,7 @@ function auth_user_info(){
 			  }
 
 			  if (empty($_POST["email"])) {
-			    $email_er = "Email is required";
+			    $_SESSION["email_er"] = "Email is required";
 			    $flag="false";
 			  } else {
 			   	
@@ -45,11 +45,11 @@ function auth_user_info(){
 			  }
 
 			  if (empty($_POST["password"])) {
-			    $password_er = "Password is required";
+			    $_SESSION["password_er"] = "Password is required";
 			    $flag="false";
 			  } else {
 			   		if (preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/",$_POST["password"]) == 0) {
-			  			$password_er = "Muust be in valid form";
+			  			 $_SESSION["password_er"] = "Muust be in valid form";
 			  			$flag="false";
 			  		}else{
 			  			$_SESSION["password"] = $_POST["password"];
@@ -57,17 +57,18 @@ function auth_user_info(){
 			  }
 			  
 			  if (empty($_POST["confirm_password"])) {
-			    $confirm_password_er = "Confirm password is required";
+			    $_SESSION["confirm_password_er"] = "Confirm password is required";
 			    $flag="false";
 			  } else {
 			   	if ($_POST["password"] != $_POST["confirm_password"]) {
-			   		$confirm_password_er = "Password won't match!!";
+			   		$_SESSION["confirm_password_er"] = "Password won't match!!";
 					$confirm_password = $_POST["confirm_password"];
 			   		 $flag="false";
 			   	}
 			  }
 			 if ($flag == "true") {
 			 	save_user_info();
+			 	save_login_info();
 			 	header("Location:../profile.php"); /* Redirect browser */
 				exit();
 			  //	include("raf.php");
@@ -94,6 +95,17 @@ function save_user_info(){
 	//$c+=fwrite($file,md5($_REQUEST["password"]));
 	echo $c." characters added to file";
 
+}
+
+function save_login_info(){
+	$file=fopen('../database/login_info.txt','a') or die("fle open error");
+	$c=0;
+	$c=fwrite($file,"\r\n");
+	$c+=fwrite($file,$_REQUEST["email"]);
+	$c+=fwrite($file," ");
+	$c+=fwrite($file,$_REQUEST["password"]);
+	//$c+=fwrite($file,md5($_REQUEST["password"]));
+	echo $c." characters added to file";
 }
 	auth_user_info();
 ?>
