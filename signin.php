@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$_SESSION["first_name_er"] = $_SESSION["last_name_er"] = $_SESSION["email_er"] = $_SESSION["password_er"] = $_SESSION["confirm_password_er"]="";
+	$_SESSION["first_name_er"] = $_SESSION["last_name_er"] = $_SESSION["phone_no_er"] = $_SESSION["email_er"] = $_SESSION["password_er"] = $_SESSION["confirm_password_er"]="";
 ?>
 
 <?php
@@ -42,7 +42,15 @@
 						<span class="error">* <?php echo $_SESSION["last_name_er"]; ?></span>
 					</td>
 				</tr>
-				
+
+				<tr>
+					<td>
+						<p>Phone No</p>
+						<input type="tel" name="phone_no">
+						<span class="error">* <?php echo $_SESSION["phone_no_er"]; ?></span>
+					</td>
+				</tr>
+
 				<tr>
 					<td>
 						<p>

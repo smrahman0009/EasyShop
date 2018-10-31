@@ -20,13 +20,18 @@
 					</a>
 				</td>
 				<td>
+					<a href="logout.php">
+						<input type="button" name="logout_button" value="Log Out">
+					</a>
+				</td>
+				<td>
 					<a href="signin.php">
-						<input type="button" name="sign_in_button" value="sign in">
+						<input type="button" name="sign_in_button" value="Sign In">
 					</a>
 				</td>
 				<td>
 					<a href="login.php">
-							<input type="button" name="log_in_button" value="log in">
+							<input type="button" name="log_in_button" value="Log In">
 					</a>
 				</td>
 				<td>

@@ -6,13 +6,18 @@ $cnt=0;
 	
 }*/
 
-echo "<table> <tr> <th>First_name</th>"."<th>Last_name</th>"."<th>Mail</th>"."<th>Password</th></tr>";
+echo "<table>
+ <tr>
+  <th>First_name</th>"."<th>Last_name</th>"."<th>Phone_No</th>"."<th>Mail</th>"."<th>Password</th>
+  </tr>";
 while($line=fgets($myfile)){
 	$line=trim($line);
 	//echo $line.'<br>';
 	$up=explode(" ",$line);
 	//echo $up[0]." - ".$up[1]."<br/>";
-	echo "<tr>"."<td>" .$up[0]. "</td>" . "<td>" .$up[1]. "</td>" . "<td>" .$up[2]. "</td>" . "<td>" .$up[3]. "</td>"."</tr>";
+	echo "<tr>"
+		."<td>" .$up[0]. "</td>" . "<td>" .$up[1]. "</td>" . "<td>" .$up[2]. "</td>" . "<td>" .$up[3]. "</td>"."<td>" .$up[4]. "</td>"
+		."</tr>";
 	}
 	echo "</table>";
 ?>

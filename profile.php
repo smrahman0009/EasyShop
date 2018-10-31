@@ -1,7 +1,13 @@
 <?php
 	session_start();
+	if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]==""){
+	echo "Invalid user";
+	header("Location:login.php?error=invalid user");
+	exit();
+}
 	$first_name = $_SESSION["first_name"];
 	$last_name = $_SESSION["last_name"];
+	$phone_no = $_SESSION["phone_no"];
 	$email = $_SESSION["email"];
 	$password = $_SESSION["password"];
 ?>
@@ -32,6 +38,13 @@
 					</td>
 				</tr>
 				
+				<tr>
+					<td>
+						<p>Phone No</p>
+						<input type="text" name="last_name" value="<?php echo $phone_no;?>">
+					</td>
+				</tr>
+
 				<tr>
 					<td>
 						<p>

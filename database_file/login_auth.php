@@ -46,6 +46,7 @@ function load_personal_info(){
 	//	$password=$up[1];
 			$_SESSION["first_name"] = $up[0];
 			$_SESSION["last_name"] = $up[1];
+			$_SESSION["phone_no"] = $up[2];
 	}
 }
 	

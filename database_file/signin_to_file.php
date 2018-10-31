@@ -2,8 +2,8 @@
 session_start();
 //print_r($_REQUEST);
 function auth_user_info(){
-	$first_name = $last_name = $email = $password = $confirm_password ="";
-	$first_name_er = $last_name_er = $email_er = $password_er = $confirm_password_er="";
+	$first_name = $last_name = $phone_no = $email = $password = $confirm_password ="";
+	$first_name_er = $last_name_er = $phone_no_er = $email_er = $password_er = $confirm_password_er="";
 	$flag="true";
 
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -28,6 +28,16 @@ function auth_user_info(){
 			  			$flag="false";
 			  		}else{
 			  			$_SESSION["last_name"] = $_POST["last_name"];
+			  		}
+			  }
+
+			  if (empty($_POST["phone_no"])) {
+			  	$_POST["phone_no"]="";
+			  } else {
+			  		if (preg_match("/^[0-9]+$/",$_POST["last_name"]) === 0) {
+			  			$_SESSION["phone_no_er"] = "Only contain numbers";
+			  		}else{
+			  			$_SESSION["phone_no"] = $_POST["phone_no"];
 			  		}
 			  }
 
@@ -88,6 +98,11 @@ function save_user_info(){
 	$c+=fwrite($file,$_REQUEST["first_name"]);
 	$c+=fwrite($file," ");
 	$c+=fwrite($file,$_REQUEST["last_name"]);
+	$c+=fwrite($file," ");
+	if ($_REQUEST["phone_no"]==="") {
+		$c+=fwrite($file,"xxx");
+	}else $c+=fwrite($file,$_REQUEST["phone_no"]);
+
 	$c+=fwrite($file," ");
 	$c+=fwrite($file,$_REQUEST["email"]);
 	$c+=fwrite($file," ");
