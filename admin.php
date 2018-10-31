@@ -1,4 +1,12 @@
 <?php
+session_start();
+if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]==""){
+	echo "Invalid user";
+	header("Location:login.php?error=invalid user");
+	exit();
+}
+?>
+<?php
 	include 'include/header.php';
 ?>
 <!-- ============ NAVIGATION BAR SECTION ============== -->

@@ -1,8 +1,10 @@
-<?php
+<p style="color:red;">
+<?php 
 session_start();
-
-
+if(isset($_REQUEST["error"]))echo $_REQUEST["error"];
 ?>
+</p>
+
 <?php
 	include 'include/header.php';
 ?>

@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	//$_SESSION["first_name_er"] = $_SESSION["last_name_er"] = $_SESSION["email_er"] = $_SESSION["password_er"] = $_SESSION["confirm_password_er"]="";
+	$_SESSION["first_name_er"] = $_SESSION["last_name_er"] = $_SESSION["email_er"] = $_SESSION["password_er"] = $_SESSION["confirm_password_er"]="";
 ?>
 
 <?php
