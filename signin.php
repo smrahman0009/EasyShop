@@ -1,10 +1,102 @@
 <?php
 	session_start();
-	$_SESSION["first_name_er"] = $_SESSION["last_name_er"] = $_SESSION["phone_no_er"] = $_SESSION["email_er"] = $_SESSION["password_er"] = $_SESSION["confirm_password_er"]="";
+	
+	
 ?>
+
 
 <?php
 	include 'include/header.php';
+
+	$first_name = $last_name = $phone_no = $email = $password = $confirm_password ="";
+
+	$first_name_er = $last_name_er = $phone_no_er = $email_er = $password_er = $confirm_password_er="";
+
+function auth_user_info(){
+	
+	$flag="true";
+
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			  if (empty($_POST["first_name"])) {
+			    $GLOBALS["first_name_er"] = "First name is required";  
+			    $flag="false";
+			  } else {
+			  		if (preg_match("/^[A-Z][a-zA-Z ]+$/",$_POST["first_name"]) === 0) {
+			  			 $GLOBALS["first_name_er"] = "start with uppercase letter <br> and only contain letter and dashes";
+			  			$flag="false";
+			  		}else{
+			  			$_SESSION["first_name"] = $_POST["first_name"];
+			  		}
+			  }
+
+			  if (empty($_POST["last_name"])) {
+			    $GLOBALS["last_name_er"] = "Last name is required";
+			    $flag="false";
+			  } else {
+			  		if (preg_match("/^[a-zA-Z ]+$/",$_POST["last_name"]) === 0) {
+			  			$GLOBALS["last_name_er"] = "Only contain letter and dashes";
+			  			$flag="false";
+			  		}else{
+			  			$_SESSION["last_name"] = $_POST["last_name"];
+			  		}
+			  }
+
+			  if (empty($_POST["phone_no"])) {
+			  	$GLOBALS["phone_no_er"] = "Phone no required";
+			  } else {
+			  		if (preg_match("/^[0-9]+$/",$_POST["last_name"]) === 0) {
+			  			$GLOBALS["phone_no_er"] = "Only contain numbers";
+			  		}else{
+			  			$_SESSION["phone_no"] = $_POST["phone_no"];
+			  		}
+			  }
+
+			  if (empty($_POST["email"])) {
+			    $GLOBALS["email_er"] = "Email is required";
+			    $flag="false";
+			  } else {
+			   	
+			   	$_SESSION["email"] = $_POST["email"];
+				 /*  	if ((preg_match("/^[a-zA-Z][0-9A-Za-z_]+(.[0-9A-Za-z_]+)*@[0-9A-Za-z_]+(.[0-9a-zA-Z]+)*.[a-zA-Z]{2,4}$/", $_POST["email"]) === 0) {
+				   		$email_er = "Email must be in valid form";
+				   		 $flag="false";
+				   	}
+			   	*/
+			  }
+
+			  if (empty($_POST["password"])) {
+			    $GLOBALS["password_er"] = "Password is required";
+			    $flag="false";
+			  } else {
+			   		if (preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/",$_POST["password"]) == 0) {
+			  			 $GLOBALS["password_er"] = "Muust be in valid form";
+			  			$flag="false";
+			  		}else{
+			  			$_SESSION["password"] = $_POST["password"];
+			  		}
+			  }
+			  
+			  if (empty($_POST["confirm_password"])) {
+			    $GLOBALS["confirm_password_er"] = "Confirm password is required";
+			    $flag="false";
+			  } else {
+			   	if ($_POST["password"] != $_POST["confirm_password"]) {
+			   		$GLOBALS["confirm_password_er"] = "Password won't match!!";
+			   		 $flag="false";
+			   	}
+			  }
+			 if ($flag == "true") {
+			 	//save_user_info();
+			 //	save_login_info();
+			 	 /* Redirect browser */
+			 	header("Location: database_file/signin_to_file.php");
+			 	
+				exit();
+			  //	include("raf.php");
+			  } 
+	}
+}
+auth_user_info();
 ?>
 <!-- ============ NAVIGATION BAR SECTION ============== -->
 <?php
@@ -18,7 +110,7 @@
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<!-- action="<?php $_SERVER["PHP_SELF"] ?>" -->
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
-		<form method="post" action="database_file/signin_to_file.php">
+		<form method="post" action="<?php $_SERVER["PHP_SELF"]?>">
 			<table align="center">
 				<tr>
 					<td>
@@ -31,7 +123,7 @@
 						<hr>
 						<p>First Name</p>
 						<input type="text" name="first_name">
-						<span class="error">* <?php echo $_SESSION["first_name_er"]; ?></span>
+						<span class="error">* <?php echo $first_name_er; ?></span>
 					</td>
 				</tr>
 
@@ -39,7 +131,7 @@
 					<td>
 						<p>Last Name</p>
 						<input type="text" name="last_name">
-						<span class="error">* <?php echo $_SESSION["last_name_er"]; ?></span>
+						<span class="error">* <?php echo $last_name_er; ?></span>
 					</td>
 				</tr>
 
@@ -47,7 +139,7 @@
 					<td>
 						<p>Phone No</p>
 						<input type="tel" name="phone_no">
-						<span class="error">* <?php echo $_SESSION["phone_no_er"]; ?></span>
+						<span class="error">* <?php echo $phone_no_er; ?></span>
 					</td>
 				</tr>
 
@@ -61,7 +153,7 @@
 							Email*
 						</p>
 						<input type="email" name="email">
-						<span class="error">* <?php echo $_SESSION["email_er"]; ?> </span>
+						<span class="error">* <?php echo $email_er; ?> </span>
 					</td>
 				</tr>
 				<tr>
@@ -70,7 +162,7 @@
 							Password
 						</p>
 						<input type="Password" name="password">
-						<span class="error">* <?php echo $_SESSION["password_er"]; ?></span>
+						<span class="error">* <?php echo $password_er; ?></span>
 					</td>
 				</tr>
 				<tr>
@@ -79,7 +171,7 @@
 							Confirm Password
 						</p>
 						<input type="Password" name="confirm_password">
-						<span class="error">* <?php echo $_SESSION["confirm_password_er"]; ?></span>
+						<span class="error">* <?php echo $confirm_password_er; ?></span>
 					</td>
 				</tr>
 				<tr>
