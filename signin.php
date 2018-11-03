@@ -1,7 +1,5 @@
 <?php
 	session_start();
-	
-	
 ?>
 
 
@@ -11,7 +9,7 @@
 	$first_name = $last_name = $phone_no = $email = $password = $confirm_password ="";
 
 	$first_name_er = $last_name_er = $phone_no_er = $email_er = $password_er = $confirm_password_er="";
-
+	
 function auth_user_info(){
 	
 	$flag="true";

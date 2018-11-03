@@ -6,8 +6,73 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]==""){
 	exit();
 }
 ?>
+
 <?php
 	include 'include/header.php';
+
+	$pro_category = $pro_name = $pro_price = $pro_quantity = $pro_description = "";
+	$pro_category_er = $pro_name_er = $pro_price_er = $pro_quantity_er = $pro_description_er = "";
+
+	function auth_product_info(){
+		  $flag="true";
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+			$_SESSION["pro_category"] = $_POST["pro_category"];
+			$_SESSION["pro_description"] = $_POST["pro_description"];
+
+			  if (empty($_POST["pro_name"])) { 
+			    $flag="false";
+			    $pro_name_er = "procuct name required";
+			  } else {
+			  		if (preg_match("/^[a-zA-Z ]+$/",$_POST["pro_name"]) === 0) {
+			  			$flag="false";
+			  			$pro_name_er = "procuct name valid format";
+			  		}else{
+			  			$_SESSION["pro_name"] = $_POST["pro_name"];
+			  		}
+			  }
+
+			  if (empty($_POST["pro_price"])) {
+			    $flag="false";
+			    $pro_price_er = "price required";
+			  } else {
+			  		if (preg_match("/^[0-9.]+$/",$_POST["pro_price"]) === 0) {
+			  			$flag="false";
+			  			 $pro_price_er = "invalid format";
+			  		}else{
+			  			$_SESSION["pro_price"] = $_POST["pro_price"];
+			  		}
+			  }
+
+			  if (empty($_POST["pro_quantity"])) {
+			    $flag="false";
+			    $pro_quantity_er = "quantity required";
+			  } else {
+			  		if (preg_match("/^[0-9]+$/",$_POST["pro_quantity"]) === 0) {
+			  			$pro_quantity_er = "Only numbers";
+			  			$flag="false";
+			  		}else{
+			  			$_SESSION["pro_quantity"] = $_POST["pro_quantity"];
+			  		}
+			  }
+
+			//  save_pro_info();
+			 if ($flag == "true") {
+
+			 	header("Location: database_file/product_to_file.php");
+				exit();
+			 	 /* Redirect browser */
+				
+			  //	include("raf.php");
+			  } 
+			  else {
+			  	echo "Wrong";
+			  //	header("Location:../dashboard.php");
+			 // 	exit();
+			  }
+	}
+}
+auth_product_info();
 ?>
 <!-- ============ NAVIGATION BAR SECTION ============== -->
 <?php
@@ -27,7 +92,7 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]==""){
 
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
-		<form method="post" action="database_file/product_to_file.php">
+		<form method="post" action="<?php $_SERVER["PHP_SELF"] ?>">
 			<table>
 				<tr>
 					<td>
@@ -56,6 +121,7 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]==""){
 					</td>
 					<td>
 						<input type="text" name="pro_name" required>
+						<span class="error">* <?php echo $pro_name_er; ?></span>
 					</td>
 				</tr>
 				<tr>
@@ -64,6 +130,7 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]==""){
 					</td>
 					<td>
 						<input type="text" name="pro_price" required>
+						<span class="error">* <?php echo $pro_price_er; ?></span>
 					</td>
 				</tr>
 				<tr>
@@ -72,6 +139,7 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]==""){
 					</td>
 					<td>
 						<input type="text" name="pro_quantity" required>
+						<span class="error">* <?php echo $pro_quantity_er; ?></span>
 					</td>
 				</tr>
 				<tr>
@@ -80,6 +148,7 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]==""){
 					</td>
 					<td>
 						<input type="text" name="pro_description" required>
+						<span class="error">* <?php echo $pro_description_er; ?></span>
 					</td>
 				</tr>
 				<tr>

@@ -18,6 +18,20 @@ session_start();
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
 		<h2>Products Info: </h2>
 		<table width="100%">
+		<tr align="right">
+			<td colspan="3">
+				<table>
+					<tr>
+						<td>
+							<input type="text" name="search_box">
+						</td>
+						<td>
+							<input type="button" name="search" value="Search">
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
 		<tr>
 			<td>
 				<a href="product_detail.php">

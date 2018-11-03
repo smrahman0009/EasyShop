@@ -5,11 +5,26 @@
 	header("Location:login.php?error=invalid user");
 	exit();
 }
-	$first_name = $_SESSION["first_name"];
-	$last_name = $_SESSION["last_name"];
-	$phone_no = $_SESSION["phone_no"];
-	$email = $_SESSION["email"];
-	$password = $_SESSION["password"];
+
+$first_name = $last_name = $phone_no = $password = $email= "";
+function get_user_info(){
+		$auth=array();
+		$myfile = fopen("database/user_info.txt", "r") or die("Unable to open file!");
+
+		while($line=fgets($myfile)){
+		$line=trim($line);
+		$up=explode(" ",$line);
+
+		if ($up[3] === $_SESSION["email"]) {
+			$GLOBALS["first_name"] = $up[0];
+			$GLOBALS["last_name"] = $up[1];
+			$GLOBALS["phone_no"] = $up[2];
+			$GLOBALS["password"] = $up[4];
+			$GLOBALS["email"] = $up[3];
+		}
+	}
+}
+get_user_info();
 ?>
 <?php
 	include 'include/header.php';

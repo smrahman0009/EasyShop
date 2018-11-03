@@ -24,7 +24,6 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]==""){
 			<hr>
 		<iframe src="info/user_info.php" width="70%" height="60%" align="center"></iframe>
 		<br>
-		
 	</td>
 	<td>
 		<h2>Product Info</h2>
