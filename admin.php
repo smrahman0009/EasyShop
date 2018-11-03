@@ -24,10 +24,13 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]==""){
 			<hr>
 		<iframe src="info/user_info.php" width="70%" height="60%" align="center"></iframe>
 		<br>
+		
+	</td>
+	<td>
 		<h2>Product Info</h2>
 		<hr>
+		<iframe src="info/product_info.php" width="70%" height="60%" align="center"></iframe>
 	</td>
-
 	<!-- ============ RIGHT COLUMN (CONTENT) ============== -->
 <?php
 //	include 'include/right_col_content.php';

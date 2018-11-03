@@ -6,12 +6,12 @@
 
 function display_user_info(){
 	$auth=array();
-	$myfile = fopen("../database/user_info.txt", "r") or die("Unable to open file!");
+	$myfile = fopen("../database/pro_info.txt", "r") or die("Unable to open file!");
 	$cnt=0;
 	
 	echo "<table>
 	 <tr>
-	  <th>First_name</th>"."<th>Last_name</th>"."<th>Phone_No</th>"."<th>Mail</th>"."<th>Password</th>
+	  <th>Category </th>"."<th>Product Name</th>"."<th> Price </th>"."<th>Quantity</th>"."<th>Description</th>
 	  </tr>";
 	while($line=fgets($myfile)){
 		$line=trim($line);

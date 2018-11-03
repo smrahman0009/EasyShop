@@ -27,38 +27,68 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]==""){
 
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
-		Choose Catagory:
-		<select name="catagory">
-			<option name="Mens Wear">
-				Mens Wear
-			</option>
-			<option name="Womens Wear">
-				Womens Wear
-			</option>
-			<option name="Kids">
-				Kids
-			</option>
-			<option name="Gadgets">
-				Gadgets
-			</option>
-		</select>
-		<br>
-		<br>
-		product quantity:
-		<input type="text" name="product_quantity">
-		<br>
-		<br>
-		product price:
-		<input type="text" name="product_price">
-		<br>
-		<br>
-		product descriptions:
-		<input type="text" name="product_price" height="100" width="200%">
-		<br>
-		<br>
-		<input type="button" name="add_price_button" width="100px" height="30%" value="ADD">
-
-
+		<form method="post" action="database_file/product_to_file.php">
+			<table>
+				<tr>
+					<td>
+						Choose Catagory:
+					</td>
+					<td>
+						<select name="pro_category">
+							<option name="Mens Wear">
+								Mens Wear
+							</option>
+							<option name="Womens Wear">
+								Womens Wear
+							</option>
+							<option name="Kids">
+								Kids
+							</option>
+							<option name="Gadgets">
+								Gadgets
+							</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Name:
+					</td>
+					<td>
+						<input type="text" name="pro_name" required>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Price:
+					</td>
+					<td>
+						<input type="text" name="pro_price" required>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Product quantity:
+					</td>
+					<td>
+						<input type="text" name="pro_quantity" required>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Description:
+					</td>
+					<td>
+						<input type="text" name="pro_description" required>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="submit" name="submit" width="100px" height="30%" value="ADD">
+					</td>
+				</tr>
+			</table>
+		</form>
 	</td>
 
 	
