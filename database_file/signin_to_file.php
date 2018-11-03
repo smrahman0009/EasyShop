@@ -18,7 +18,7 @@ function save_user_info(){
 	$c+=fwrite($file," ");
 	$c+=fwrite($file,$_SESSION["email"]);
 	$c+=fwrite($file," ");
-	$c+=fwrite($file,$_SESSION["password"]);
+	$c+=fwrite($file,password_hash($_SESSION["password"],PASSWORD_DEFAULT));
 	//$c+=fwrite($file,md5($_REQUEST["password"]));
 	echo $c." characters added to file";
 
@@ -30,7 +30,7 @@ function save_login_info(){
 	$c=fwrite($file,"\r\n");
 	$c+=fwrite($file,$_SESSION["email"]);
 	$c+=fwrite($file," ");
-	$c+=fwrite($file,$_SESSION["password"]);
+	$c+=fwrite($file,password_hash($_SESSION["password"],PASSWORD_DEFAULT));
 	//$c+=fwrite($file,md5($_REQUEST["password"]));
 	echo $c." characters added to file";
 }

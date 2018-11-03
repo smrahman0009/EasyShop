@@ -12,8 +12,10 @@ function login_auth(){
 		$up=explode(" ",$line);
 		$mail_id=$up[0];
 		$password=$up[1];
+		$hs_pwd_in_tf = password_hash($up[1],PASSWORD_DEFAULT);
+		$password_match=1;
 
-		if ($mail_id === $_POST["user_id"] && $password === $_POST["password"]) {
+		if ($mail_id === $_POST["user_id"] &&  $password_match == password_verify($password,$hs_pwd_in_tf)) {
 			$flag="true";
 			$_SESSION["flag"]="loginSuccess";
 			$_SESSION["email"] = $mail_id;
