@@ -1,56 +1,37 @@
 <?php
-session_start();
-function login_auth(){
-	$mail_id=$password=$flag="false";
-	$auth=array();
-	$myfile = fopen("../database/login_info.txt", "r") or die("Unable to open file!");
-	$cnt=0;
-	$_SESSION["flag"]="";
-	while($line=fgets($myfile)){
-		$line=trim($line);
-		//echo $line.'<br>';
-		$up=explode(" ",$line);
-		$mail_id=$up[0];
-		$password=$up[1];
-		$hs_pwd_in_tf = password_hash($up[1],PASSWORD_DEFAULT);
-		$password_match=1;
+//session_start();
 
-		if ($mail_id === $_POST["user_id"] &&  $password_match == password_verify($password,$hs_pwd_in_tf)) {
-			$flag="true";
-			$_SESSION["flag"]="loginSuccess";
-			$_SESSION["email"] = $mail_id;
-			$_SESSION["password"] = $password;
-			load_personal_info();
-			header("Location: ../index.php");
-			exit();
-			
+function loadFromPersonalInfo($qry){
+	global $sign_in_info;
+
+	$db_server_name = "localhost";
+	$db_user_name = "root";
+	$db_password = "";
+	$db_name = "easyshop";
+	$db_con = mysqli_connect($db_server_name, $db_user_name, $db_password, $db_name);
+
+	//$qry = "SELECT * FROM user_personal_info;";
+	$qry_result = mysqli_query($db_con,$qry);
+	$qry_result_chk = mysqli_num_rows($qry_result);
+
+	if ($qry_result_chk > 0) {
+		while ($rows = mysqli_fetch_assoc($qry_result)) {
+			//echo "First Name: " . $rows["first_name"] . "</br> ";
+			//echo "Last Name: " . $rows["last_name"] . "</br> ";
+			//echo "Phone No: " . $rows["phone_no"] . "</br>";
+			$temp_array = array();
+			$temp_array["user_id"] = $rows["user_id"];
+			$temp_array["email"] = $rows["email"];
+			$temp_array["pwd"] = $rows["pwd"];
+			$sign_in_info[] = $temp_array;
 		}
 	}
-	if ($flag ==="false") {
-		//echo "wrong";
-		$_SESSION["user_id"] = "wrong user id";
-		$_SESSION["password"]= "wrong password";
-		header("Location: ../login.php");
-		exit();
+
+	if ($db_con != NULL) {
+	//	echo "Connection Established";
 	}
-}
-function load_personal_info(){
-	$mail_id=$password=$flag="false";
-	$auth=array();
-	$myfile = fopen("../database/user_info.txt", "r") or die("Unable to open file!");
-	$cnt=0;
-	//$_SESSION["flag"]="";
-	while($line=fgets($myfile)){
-		$line=trim($line);
-		//echo $line.'<br>';
-		$up=explode(" ",$line);
-	//	$mail_id=$up[0];
-	//	$password=$up[1];
-			$_SESSION["first_name"] = $up[0];
-			$_SESSION["last_name"] = $up[1];
-			$_SESSION["phone_no"] = $up[2];
-	}
+
 }
 	
-login_auth();
+//login_auth();
 ?>
