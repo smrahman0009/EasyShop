@@ -1,7 +1,33 @@
 <?php
 	include 'include/header.php';
 ?>
+<?php
+	$cred=array();
+	require("database_file/read_xml.php");
+	
+	load_from_xml();
+	
+	//$xml=simplexml_load_file("database/product_detail.xml") or die("Error: Cannot create object");
+	foreach ($cred as $a) {
+		$category = $a["category"];
+		$price = $a["price"];
+		$quant = $a["quant"];
+		$des = $a["des"];
+	}
+	//require("database_file/read_xml.php");
+	//load_from_xml();
+	
+/*	$xml=simplexml_load_file("database/product_detail.xml") or die("Error: Cannot create object");
+	//echo $xml->category. "<br>";
+//	echo $xml->price . "<br>";
+//	echo $xml->quant . "<br>";
 
+	$category = $xml->category;
+	$price = $xml->price;
+	$quant = $xml->quant;
+	$des = $xml->des;*/
+
+?>
 
 <!-- ============ NAVIGATION BAR SECTION ============== -->
 <?php
@@ -28,10 +54,19 @@
 		<p>
 			contain some product related informations.
 		</p>
+		
 		<h3>Quantity</h3>
-		<input type="text" name="quantity" value="3">
+		<input type="text" name="quantity" value="<?php echo $quant ?>">
 		<h3>price</h3>
-		<input type="text" name="price" value="10$">
+		<input type="text" name="price" value= "<?php echo $price ?>">
+		<br>
+		<h3>Description: </h3>
+		<hr>
+		<p>
+			<?php
+				echo $des;
+			?>
+		</p>
 		<input type="button" name="add_button" width="100px" height="30%" value="ADD TO CART">
 		<br>
 

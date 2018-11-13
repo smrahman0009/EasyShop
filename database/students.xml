@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml-stylesheet type="text/css" href="mystyle.css" ?>-->
+<section name="B" courseID="123">
+	<student type="regular">
+		<id>123</id>
+		<name>ABC</name>
+		<pass>ABC</pass>
+		<club type="president">ACC</club>
+		<club>ABC</club>
+	</student>
+	<student type="probation">
+		<id>456</id>
+		<pass>cba</pass>
+		<name>XYZ</name>
+		<major>CSSE</major>
+		<club type="general">APAC</club>
+	</student>
+	<student type="regular">
+		<id>908</id>
+		<pass>cbz</pass>
+		<name>cba</name>
+		<major>CIS</major>
+		<club type="general">IEEE</club>
+	</student>
+</section>

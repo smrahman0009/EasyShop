@@ -26,7 +26,7 @@
 				</td>
 				<td>
 					<a href="signin.php">
-						<input type="button" name="sign_in_button" value="Sign In">
+						<input type="button" name="sign_in_button" value="Sign Up">
 					</a>
 				</td>
 				<td>
