@@ -1,44 +1,32 @@
 <?php
-session_start();
-//print_r($_REQUEST);
+//session_start();
 
-function save_user_info(){
+function insertIntoPersonalInfo($qry){
+	global $personal_info;
 
-	$file=fopen('../database/user_info.txt','a') or die("fle open error");
-	$c=0;
-	$c=fwrite($file,"\r\n");
-	$c+=fwrite($file,$_SESSION["first_name"]);
-	$c+=fwrite($file," ");
-	$c+=fwrite($file,$_SESSION["last_name"]);
-	$c+=fwrite($file," ");
-	if ($_SESSION["phone_no"]==="") {
-		$c+=fwrite($file,"xxx");
-	}else $c+=fwrite($file,$_SESSION["phone_no"]);
-
-	$c+=fwrite($file," ");
-	$c+=fwrite($file,$_SESSION["email"]);
-	$c+=fwrite($file," ");
-	$c+=fwrite($file,password_hash($_SESSION["password"],PASSWORD_DEFAULT));
-	//$c+=fwrite($file,md5($_REQUEST["password"]));
-	echo $c." characters added to file";
+	$db_server_name = "localhost";
+	$db_user_name = "root";
+	$db_password = "";
+	$db_name = "easyshop";
+	$db_con = mysqli_connect($db_server_name, $db_user_name, $db_password, $db_name);
+	$qry_result = mysqli_query($db_con,$qry);
 
 }
 
-function save_login_info(){
-	$file=fopen('../database/login_info.txt','a') or die("fle open error");
-	$c=0;
-	$c=fwrite($file,"\r\n");
-	$c+=fwrite($file,$_SESSION["email"]);
-	$c+=fwrite($file," ");
-	$c+=fwrite($file,password_hash($_SESSION["password"],PASSWORD_DEFAULT));
-	//$c+=fwrite($file,md5($_REQUEST["password"]));
-	echo $c." characters added to file";
-}
-	save_user_info();
-	save_login_info();
+function insertIntoSignUpInfo($qry){
+	global $personal_info;
 
-	header("Location: ../signin.php");
-	exit();
+	$db_server_name = "localhost";
+	$db_user_name = "root";
+	$db_password = "";
+	$db_name = "easyshop";
+	$db_con = mysqli_connect($db_server_name, $db_user_name, $db_password, $db_name);
+
+	$qry_result = mysqli_query($db_con,$qry);
+}
+
+	//header("Location: ../signin.php");
+	//exit();
 ?>
 
 

@@ -6,95 +6,32 @@
 <?php
 	include 'include/header.php';
 
-	$first_name = $last_name = $phone_no = $email = $password = $confirm_password ="";
+$first_name = $last_name = $phone_no = $email = $pwd = $confirm_password ="";
 
-	$first_name_er = $last_name_er = $phone_no_er = $email_er = $password_er = $confirm_password_er="";
-	
-function auth_user_info(){
-	
-	$flag="true";
+$first_name_er = $last_name_er = $phone_no_er = $email_er = $password_er = $confirm_password_er="";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$first_name = $_POST["first_name"];
+	$last_name = $_POST["last_name"];
+	$phone_no = $_POST["phone_no"];
+	$email = $_POST["email"];
+	$pwd = $_POST["password"];
 
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			  if (empty($_POST["first_name"])) {
-			    $GLOBALS["first_name_er"] = "First name is required";  
-			    $flag="false";
-			  } else {
-			  		if (preg_match("/^[A-Z][a-zA-Z ]+$/",$_POST["first_name"]) === 0) {
-			  			 $GLOBALS["first_name_er"] = "start with uppercase letter <br> and only contain letter and dashes";
-			  			$flag="false";
-			  		}else{
-			  			$_SESSION["first_name"] = $_POST["first_name"];
-			  		}
-			  }
+require("database_file/signin_to_file.php");
+$personal_info = array();
 
-			  if (empty($_POST["last_name"])) {
-			    $GLOBALS["last_name_er"] = "Last name is required";
-			    $flag="false";
-			  } else {
-			  		if (preg_match("/^[a-zA-Z ]+$/",$_POST["last_name"]) === 0) {
-			  			$GLOBALS["last_name_er"] = "Only contain letter and dashes";
-			  			$flag="false";
-			  		}else{
-			  			$_SESSION["last_name"] = $_POST["last_name"];
-			  		}
-			  }
+$query = "INSERT INTO personal_info (first_name,last_name,phone_no)
+			VALUES
+ ( '$first_name','$last_name','phone_no');";
 
-			  if (empty($_POST["phone_no"])) {
-			  	$GLOBALS["phone_no_er"] = "Phone no required";
-			  } else {
-			  		if (preg_match("/^[0-9]+$/",$_POST["last_name"]) === 0) {
-			  			$GLOBALS["phone_no_er"] = "Only contain numbers";
-			  		}else{
-			  			$_SESSION["phone_no"] = $_POST["phone_no"];
-			  		}
-			  }
+insertIntoPersonalInfo($query);
 
-			  if (empty($_POST["email"])) {
-			    $GLOBALS["email_er"] = "Email is required";
-			    $flag="false";
-			  } else {
-			   	
-			   	$_SESSION["email"] = $_POST["email"];
-				 /*  	if ((preg_match("/^[a-zA-Z][0-9A-Za-z_]+(.[0-9A-Za-z_]+)*@[0-9A-Za-z_]+(.[0-9a-zA-Z]+)*.[a-zA-Z]{2,4}$/", $_POST["email"]) === 0) {
-				   		$email_er = "Email must be in valid form";
-				   		 $flag="false";
-				   	}
-			   	*/
-			  }
+$query = "INSERT INTO sign_in_info (email,pwd)VALUES ('$email','$pwd');";
 
-			  if (empty($_POST["password"])) {
-			    $GLOBALS["password_er"] = "Password is required";
-			    $flag="false";
-			  } else {
-			   		if (preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/",$_POST["password"]) == 0) {
-			  			 $GLOBALS["password_er"] = "Muust be in valid form";
-			  			$flag="false";
-			  		}else{
-			  			$_SESSION["password"] = $_POST["password"];
-			  		}
-			  }
-			  
-			  if (empty($_POST["confirm_password"])) {
-			    $GLOBALS["confirm_password_er"] = "Confirm password is required";
-			    $flag="false";
-			  } else {
-			   	if ($_POST["password"] != $_POST["confirm_password"]) {
-			   		$GLOBALS["confirm_password_er"] = "Password won't match!!";
-			   		 $flag="false";
-			   	}
-			  }
-			 if ($flag == "true") {
-			 	//save_user_info();
-			 //	save_login_info();
-			 	 /* Redirect browser */
-			 	header("Location: database_file/signin_to_file.php");
-			 	
-				exit();
-			  //	include("raf.php");
-			  } 
-	}
+insertIntoSignUpInfo($query);
+			   
 }
-auth_user_info();
+
+	
 ?>
 <!-- ============ NAVIGATION BAR SECTION ============== -->
 <?php
