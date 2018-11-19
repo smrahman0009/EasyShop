@@ -65,7 +65,7 @@ insertIntoSignUpInfo($query);
 				<tr>
 					<td>
 						<p>Last Name</p>
-						<input type="text" id="last-name" name="last_name">
+						<input type="text" id="last-name" name="last_name" placeholder="Only contain letters ">
 						<span class="error">* <?php echo $last_name_er; ?></span>
 					</td>
 				</tr>
@@ -73,7 +73,7 @@ insertIntoSignUpInfo($query);
 				<tr>
 					<td>
 						<p>Phone No</p>
-						<input type="tel" name="phone_no">
+						<input type="tel" id="phone-no" name="phone_no" placeholder="Only contain numbers">
 						<span class="error">* <?php echo $phone_no_er; ?></span>
 					</td>
 				</tr>
@@ -87,7 +87,7 @@ insertIntoSignUpInfo($query);
 						<p>
 							Email*
 						</p>
-						<input type="email" name="email">
+						<input type="email" id="email" name="email">
 						<span class="error">* <?php echo $email_er; ?> </span>
 					</td>
 				</tr>
@@ -96,7 +96,7 @@ insertIntoSignUpInfo($query);
 						<p>
 							Password
 						</p>
-						<input type="Password" name="password">
+						<input type="Password" id="password" name="password">
 						<span class="error">* <?php echo $password_er; ?></span>
 					</td>
 				</tr>
@@ -105,7 +105,7 @@ insertIntoSignUpInfo($query);
 						<p>
 							Confirm Password
 						</p>
-						<input type="Password" name="confirm_password">
+						<input type="Password" id="confirm-password" name="confirm_password">
 						<span class="error">* <?php echo $confirm_password_er; ?></span>
 					</td>
 				</tr>
@@ -120,15 +120,47 @@ insertIntoSignUpInfo($query);
 
 <script type="text/javascript">
 	function validate(){
+		/////////////// Validate First_name ////////////////////////
 		var first_name = document.getElementById("first-name").value;
 		var f_n_reg= /^[A-Z][a-z]+$/;
-		var result = f_n_reg.test(first_name);
-		if (result == false) {
-			alert("Use Promer Format to Sign Up");
+		var f_n_reg_result = f_n_reg.test(first_name);
+
+		/////////////// Validate Last_name ////////////////////////
+		var last_name = document.getElementById("last-name").value;
+		var l_n_reg= /^[A-Z][a-z]+$/;
+		var l_n_reg_result = f_n_reg.test(first_name);
+
+		/////////////// Validate Phone Numbers ////////////////////////
+		var phone_no = document.getElementById("phone-no").value;
+		var phone_no_reg = /^[0-9]+$/;
+		var phone_no_reg_result = phone_no_reg.test(phone_no);
+
+		/////////////// Validate Email ////////////////////////
+		var email = document.getElementById("email").value;
+		var email_reg = /^[^@]+@[^@.]+\.[a-z]+$/i;
+		var email_reg_result = email_reg.test(email);
+
+		/////////////// Validate Email ////////////////////////
+		var email = document.getElementById("email").value;
+		var email_reg = /^[^@]+@[^@.]+\.[a-z]+$/i;
+		var email_reg_result = email_reg.test(email);
+
+		if (f_n_reg_result == false) {
+			alert("Start with Uppercase Letter");
 		}
-		if (result == true) {
+		else if (l_n_reg_result == false) {
+			alert("Only contain letters ");
+		}
+		else if (phone_no_reg == false) {
+			alert("Only numbers");
+		}
+		else if (email_reg_result == false) {
+			alert("Shoul be valid email address");
+		}
+		else if (f_n_reg_result == true) {
 			alert("RIGHT Format");
 		}
+		
 		return false;
 	}
 </script>
