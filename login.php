@@ -26,10 +26,19 @@ if(isset($_REQUEST["error"]))echo $_REQUEST["error"];
 			//echo $info["first_name"];
 			$_SESSION["email"] = $info["email"];
 			$_SESSION["password"] = $info["pwd"];
+			$_SESSION["user_type"] =$info["user_type"];
 
-			if ($_SESSION["email"] == $_POST["u_email"] &&$_SESSION["password"] == $_POST["password"] ) {
-			$_SESSION["flag"]="loginSuccess";
-			header("Location:index.php");
+			if ($_SESSION["email"] == $_POST["u_email"] && $_SESSION["password"] == $_POST["password"]) {
+				$_SESSION["flag"]="loginSuccess";
+				if ($_SESSION["user_type"]=="admin") {
+					
+					header("Location:admin.php");
+				}
+				else if ($_SESSION["user_type"]=="normal") {
+
+					header("Location:index.php");
+				}
+			
 			exit();
 			break;
 		}

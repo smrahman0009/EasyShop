@@ -23,6 +23,7 @@ function loadFromPersonalInfo($qry){
 			$temp_array["user_id"] = $rows["user_id"];
 			$temp_array["email"] = $rows["email"];
 			$temp_array["pwd"] = $rows["pwd"];
+			$temp_array["user_type"] = $rows["user_type"];
 			$sign_in_info[] = $temp_array;
 		}
 	}
