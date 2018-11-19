@@ -21,7 +21,7 @@ $personal_info = array();
 
 $query = "INSERT INTO personal_info (first_name,last_name,phone_no)
 			VALUES
- ( '$first_name','$last_name','phone_no');";
+ ( '$first_name','$last_name','$phone_no');";
 
 insertIntoPersonalInfo($query);
 
@@ -45,7 +45,7 @@ insertIntoSignUpInfo($query);
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<!-- action="<?php $_SERVER["PHP_SELF"] ?>" -->
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
-		<form method="post" action="#" onsubmit="return validate()">
+		<form method="post" action="<?php $_SERVER["PHP_SELF"] ?>" onsubmit="return validate()">
 			<table align="center">
 				<tr>
 					<td>
@@ -87,7 +87,7 @@ insertIntoSignUpInfo($query);
 						<p>
 							Email*
 						</p>
-						<input type="email" id="email" name="email">
+						<input type="email" id="email" name="email" placeholder="Should be valid email address">
 						<span class="error">* <?php echo $email_er; ?> </span>
 					</td>
 				</tr>
@@ -96,7 +96,7 @@ insertIntoSignUpInfo($query);
 						<p>
 							Password
 						</p>
-						<input type="Password" id="password" name="password">
+						<input type="Password" id="password" name="password" placeholder="Contain a lowercase,uppercase & numbers">
 						<span class="error">* <?php echo $password_er; ?></span>
 					</td>
 				</tr>
@@ -127,8 +127,8 @@ insertIntoSignUpInfo($query);
 
 		/////////////// Validate Last_name ////////////////////////
 		var last_name = document.getElementById("last-name").value;
-		var l_n_reg= /^[A-Z][a-z]+$/;
-		var l_n_reg_result = f_n_reg.test(first_name);
+		var l_n_reg= /^[A-Za-z]+$/;
+		var l_n_reg_result = l_n_reg.test(last_name);
 
 		/////////////// Validate Phone Numbers ////////////////////////
 		var phone_no = document.getElementById("phone-no").value;
@@ -140,25 +140,39 @@ insertIntoSignUpInfo($query);
 		var email_reg = /^[^@]+@[^@.]+\.[a-z]+$/i;
 		var email_reg_result = email_reg.test(email);
 
-		/////////////// Validate Email ////////////////////////
-		var email = document.getElementById("email").value;
-		var email_reg = /^[^@]+@[^@.]+\.[a-z]+$/i;
-		var email_reg_result = email_reg.test(email);
+		/////////////// Validate Password ////////////////////////
+		/////////////// Must contain a lowercase, uppercase letter and a number//
+		var password = document.getElementById("password").value;  
+		var password_reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/;
+		var password_reg_result = password_reg.test(password);
 
 		if (f_n_reg_result == false) {
 			alert("Start with Uppercase Letter");
+			return false;
 		}
-		else if (l_n_reg_result == false) {
+		 if (l_n_reg_result == false) {
 			alert("Only contain letters ");
+			return false;
 		}
-		else if (phone_no_reg == false) {
-			alert("Only numbers");
+		if (phone_no_reg_result == false) {
+			alert("Phone no only contain numbers");
+			return false;
 		}
-		else if (email_reg_result == false) {
+		 if (email_reg_result == false) {
 			alert("Shoul be valid email address");
+			return false;
 		}
-		else if (f_n_reg_result == true) {
-			alert("RIGHT Format");
+		 if (password_reg_result == false) {
+			alert("Must contain a lowercase,uppercase and a number");
+			return false;
+		}
+		else if (password_reg_result == true) {
+			if (document.getElementById("password").value != document.getElementById("confirm-password").value) {
+				alert("Password and Confirm password Shoul be matched");
+				return false;
+			}
+			else alert("Password matched!!!");
+			return true;
 		}
 		
 		return false;
