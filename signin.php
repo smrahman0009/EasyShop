@@ -45,7 +45,7 @@ insertIntoSignUpInfo($query);
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<!-- action="<?php $_SERVER["PHP_SELF"] ?>" -->
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
-		<form method="post" action="<?php $_SERVER["PHP_SELF"]?>">
+		<form method="post" action="#" onsubmit="return validate()">
 			<table align="center">
 				<tr>
 					<td>
@@ -57,7 +57,7 @@ insertIntoSignUpInfo($query);
 						<p>Personal Information</p>
 						<hr>
 						<p>First Name</p>
-						<input type="text" name="first_name">
+						<input type="text" id="first-name" name="first_name" placeholder="Start with Uppercase Letter">
 						<span class="error">* <?php echo $first_name_er; ?></span>
 					</td>
 				</tr>
@@ -65,7 +65,7 @@ insertIntoSignUpInfo($query);
 				<tr>
 					<td>
 						<p>Last Name</p>
-						<input type="text" name="last_name">
+						<input type="text" id="last-name" name="last_name">
 						<span class="error">* <?php echo $last_name_er; ?></span>
 					</td>
 				</tr>
@@ -118,6 +118,20 @@ insertIntoSignUpInfo($query);
 		</form>
 	</td>
 
+<script type="text/javascript">
+	function validate(){
+		var first_name = document.getElementById("first-name").value;
+		var f_n_reg= /^[A-Z][a-z]+$/;
+		var result = f_n_reg.test(first_name);
+		if (result == false) {
+			alert("Use Promer Format to Sign Up");
+		}
+		if (result == true) {
+			alert("RIGHT Format");
+		}
+		return false;
+	}
+</script>
 	<!-- ============ RIGHT COLUMN (CONTENT) ============== -->
 <?php
 	include 'include/right_col_content.php';
