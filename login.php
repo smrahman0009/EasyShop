@@ -1,7 +1,7 @@
 <p style="color:red;">
 <?php 
 session_start();
-if(isset($_REQUEST["error"]))echo $_REQUEST["error"];
+if(isset($_REQUEST["error"]))//echo $_REQUEST["error"];
 ?>
 </p>
 
@@ -30,6 +30,7 @@ if(isset($_REQUEST["error"]))echo $_REQUEST["error"];
 
 			if ($_SESSION["email"] == $_POST["u_email"] && $_SESSION["password"] == $_POST["password"]) {
 				$_SESSION["flag"]="loginSuccess";
+				$_REQUEST["error"]="";
 				if ($_SESSION["user_type"]=="admin") {
 					
 					header("Location:admin.php");
@@ -82,8 +83,14 @@ if(isset($_REQUEST["error"]))echo $_REQUEST["error"];
 					</td>
 				</tr>
 				<tr>
-					<td>
-						<?php //echo $un_auth_login; ?>
+					<td style="color: red;">
+						
+						<?php
+						if (isset($_REQUEST["error"])) {
+							echo $_REQUEST["error"];
+						}
+						
+						 ?>
 					</td>
 				</tr>
 			</table>

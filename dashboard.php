@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]==""){
+if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]=="" || $_SESSION["user_type"] != "admin"){
 	echo "Invalid user";
 	header("Location:login.php?error=invalid user");
 	exit();
