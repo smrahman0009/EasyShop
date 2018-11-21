@@ -7,7 +7,16 @@ session_start();
 
 <!-- ============ NAVIGATION BAR SECTION ============== -->
 <?php
-	include 'include/navigation_bar.php';
+	if (isset($_SESSION["user_type"])==false) {
+		include 'include/nav_bar_loggedout.php';
+	}
+	elseif ($_SESSION["user_type"]=="normal") {
+		include 'include/nav_bar_user.php';
+	 } 
+	 elseif ($_SESSION["user_type"] =="admin") {
+	 	include 'include/nav_bar_admin.php';
+	 }
+	
 ?>
 	<!-- ============ LEFT COLUMN (MENU) ============== -->
 <?php

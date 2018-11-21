@@ -10,7 +10,7 @@ if(isset($_REQUEST["error"]))//echo $_REQUEST["error"];
 ?>
 <!-- ============ NAVIGATION BAR SECTION ============== -->
 <?php
-	include 'include/navigation_bar.php';
+		include 'include/nav_bar_loggedout.php';
 ?>
 	<!-- ============ LEFT COLUMN (MENU) ============== -->
 	
