@@ -13,6 +13,7 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]=="" || $_SESSION["user_ty
 	
 	$pro_category = $pro_name = $pro_price = $pro_quantity = $pro_description = "";
 	$pro_category_er = $pro_name_er = $pro_price_er = $pro_quantity_er = $pro_description_er = "";
+	//$_SESSION["img_path"] = "";
 
 ?>
 <!-- ============ NAVIGATION BAR SECTION ============== -->
@@ -46,6 +47,8 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]=="" || $_SESSION["user_ty
 			<table>
 				<tr>
 					<td rowspan="6">
+						<img src="<?php  echo $_SESSION['$img_path']; ?>" width="20%" height="20%">
+						<hr>
 						<input type="file" name="file">
 					</td>
 				</tr>
