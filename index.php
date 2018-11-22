@@ -24,76 +24,34 @@ session_start();
 ?>
 
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
+
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
-		<h2>Products Info: </h2>
-		<table width="100%">
-		<tr align="right">
-			<td colspan="3">
-				<table>
-					<tr>
-						<td>
-							<input type="text" name="search_box">
-						</td>
-						<td>
-							<input type="button" name="search" value="Search">
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<a href="product_detail.php">
-					<img src="img/f1.jpg" class="dolls">
-				</a>
-			</td>
-			<td class="product_detail.php">
-				<a href="product_detail.php">
-					<img src="img/f2.jpg" class="dolls">
-				</a>
-			</td>
-			<td>
-				<a href="product_detail.php">
-					<img src="img/f3.jpg" class="dolls">
-				</a>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<a href="product_detail.php">
-					<img src="img/a1.jpg" class="dolls">
-				</a>
-			</td>
-			<td>
-				<a href="product_detail.php">
-					<img src="img/a2.jpg" class="dolls">
-				</a>
-			</td>
-			<td>
-				<a href="product_detail.php">
-					<img src="img/a3.jpg" class="dolls">
-				</a>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<a href="product_detail.php">
-					<img src="img/a4.jpg">
-				</a>
-			</td>
-			<td>
-				<a href="product_detail.php">
-					<img src="img/a5.jpg">
-				</a>
-			</td>
-			<td>
-				<a href="product_detail.php">
-					<img src="img/a6.jpg">
-				</a>
-			</td>
-		</tr>
-		</table>
+		
+
+		
+
+
+								<div>
+										<?php
+	require("database_file/display_product.php");
+	$product_info = array();
+	loadFromProduct("SELECT * FROM product;");
+	$counter = 0;
+	foreach ($product_info as  $info) {
+	?>
+								
+								<img src="<?php echo $info['product_image'];?>"width="200" height="200"> 
+
+
+	 <?php
+	
+	}
+	?>
+								</div>
+
+	
 	</td>
+
 
 	<!-- ============ RIGHT COLUMN (CONTENT) ============== -->
 <?php

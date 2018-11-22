@@ -22,6 +22,7 @@
 					$fileDestination = "uploads/" . $fileNameNew;
 					move_uploaded_file($fileTmpName, $fileDestination);
 					insert_to_product($fileDestination);
+					$_SESSION["img_path"] = $fileDestination;
 					header("Location: dashboard.php?upload success");
 				}
 				else echo "Too much large";
@@ -52,7 +53,7 @@
 	$product_image = $fileDestination;
 	$product_category =  $_POST["product_category"];
 	$description = $_POST["description"];
-	$_SESSION["img_path"] = $fileDestination;
+	
 
 
 	$qry = "INSERT INTO product (product_name,product_price,product_qty,product_image,product_category,description)
