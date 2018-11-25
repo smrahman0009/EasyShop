@@ -35,7 +35,7 @@ $product_info = array();
 loadFromProduct("SELECT * FROM product;");
 $counter = 0;
 foreach ($product_info as  $info): ?>
-						<table>
+						<table style="background-color: white; position: center;">
 							<tr>
 								<td>
 										<img src="<?php echo $info['product_image'];?>"width="200" height="200"> 
@@ -48,10 +48,26 @@ foreach ($product_info as  $info): ?>
 							</tr>
 							<tr>
 								<td>
-									<?php echo "Title: " . $info["description"] ;?>
+									<?php echo "Title: " . $info["product_category"] ;?>
 								</td>
 								<td>
-									<?php echo "Title: " . $info["description"] ;?>
+									<?php echo "Title: " . $info["product_category"] ;?>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<?php echo "Name: " . $info["product_name"] ;?>
+								</td>
+								<td>
+									<?php echo "Name: " . $info["product_name"] ;?>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<?php echo "Price: " . $info["product_price"] ;?>
+								</td>
+								<td>
+									<?php echo "Price: " . $info["product_price"] ;?>
 								</td>
 							</tr>
 						</table>
