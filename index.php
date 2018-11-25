@@ -28,29 +28,42 @@ session_start();
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
 		
 
-		
+
+<?php
+require("database_file/display_product.php");
+$product_info = array();
+loadFromProduct("SELECT * FROM product;");
+$counter = 0;
+foreach ($product_info as  $info): ?>
+						<table>
+							<tr>
+								<td>
+										<img src="<?php echo $info['product_image'];?>"width="200" height="200"> 
+										
+								</td>
+								<td>
+										<img src="<?php echo $info['product_image'];?>"width="200" height="200"> 
+										
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<?php echo "Title: " . $info["description"] ;?>
+								</td>
+								<td>
+									<?php echo "Title: " . $info["description"] ;?>
+								</td>
+							</tr>
+						</table>
+					
+					
 
 
-								<div>
-										<?php
-	require("database_file/display_product.php");
-	$product_info = array();
-	loadFromProduct("SELECT * FROM product;");
-	$counter = 0;
-	foreach ($product_info as  $info) {
-	?>
+<?php endforeach; ?>
 								
-								<img src="<?php echo $info['product_image'];?>"width="200" height="200"> 
-
-
-	 <?php
-	
-	}
-	?>
-								</div>
 
 	
-	</td>
+	
 
 
 	<!-- ============ RIGHT COLUMN (CONTENT) ============== -->
