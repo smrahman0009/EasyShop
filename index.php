@@ -33,49 +33,29 @@ session_start();
 require("database_file/display_product.php");
 $product_info = array();
 loadFromProduct("SELECT * FROM product;");
-$counter = 0;
+$counter = 1;
+echo "<table>";
 foreach ($product_info as  $info): ?>
-						<table style="background-color: white; position: center;">
-							<tr>
+						<?php 
+							if(($counter % 3) == 1) {    // Check if it's new row
+							 echo '<tr>'; 
+							 }
+						?>
 								<td>
-										<img src="<?php echo $info['product_image'];?>"width="200" height="200"> 
+										<img src="<?php echo $info['product_image'];?>"width="200" height="200">
+										<?php
+											echo "Name: " . $info["product_name"];
+										?> 
 										
 								</td>
-								<td>
-										<img src="<?php echo $info['product_image'];?>"width="200" height="200"> 
-										
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<?php echo "Title: " . $info["product_category"] ;?>
-								</td>
-								<td>
-									<?php echo "Title: " . $info["product_category"] ;?>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<?php echo "Name: " . $info["product_name"] ;?>
-								</td>
-								<td>
-									<?php echo "Name: " . $info["product_name"] ;?>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<?php echo "Price: " . $info["product_price"] ;?>
-								</td>
-								<td>
-									<?php echo "Price: " . $info["product_price"] ;?>
-								</td>
-							</tr>
-						</table>
-					
-					
 
-
+						<?php if(($counter % 3) == 0) { 
+							 echo '</tr>'; 
+						} ?>
+<?php $counter++; ?>				
 <?php endforeach; ?>
+<?php echo "</table>"; ?>
+<?php echo "<h2>" .$counter." </h2>"; ?>
 								
 
 	
