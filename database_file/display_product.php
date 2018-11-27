@@ -12,7 +12,10 @@ function loadFromProduct($qry){
 
 	//$qry = "SELECT * FROM user_personal_info;";
 	$qry_result = mysqli_query($db_con,$qry);
-	$qry_result_chk = mysqli_num_rows($qry_result);
+	global $qry_result_chk;
+	 $qry_result_chk = mysqli_num_rows($qry_result);
+	 $_SESSION["rows"] = $qry_result_chk;
+	
 
 	if ($qry_result_chk > 0) {
 		while ($rows = mysqli_fetch_assoc($qry_result)) {

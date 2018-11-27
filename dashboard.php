@@ -120,7 +120,6 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]=="" || $_SESSION["user_ty
 		</form>
 	</td>
 
-	
 </tr>
 
 <!-- ============ FOOTER SECTION ============== -->
