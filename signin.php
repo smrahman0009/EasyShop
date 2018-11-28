@@ -88,14 +88,19 @@ function auth_user_info(){
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$flag = auth_user_info();
 	if ($flag == true) {
-
+	//////////////// PERSONAL INFO/////////////////////////
 	$first_name = $_POST["first_name"];
 	$last_name = $_POST["last_name"];
 	$phone_no = $_POST["phone_no"];
+
+	//////////////// SIGN IN INFO/////////////////////////
 	$email = $_POST["email"];
 	$pwd = $_POST["password"];
+	$pwd_hash = password_hash($pwd,PASSWORD_DEFAULT);
 	$user_type="normal";
 
+	//echo "<h1> Password Hash: ". $pwd_hash ."</h1>";
+//	echo "<h1> Password: ". password_hash($pwd_hash,PASSWORD_DEFAULT)."</h1>";
 
 	require("database_file/signin_to_file.php");
 	$personal_info = array();
@@ -106,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	insertIntoPersonalInfo($query);
 
-	$query = "INSERT INTO sign_in_info (email,pwd,user_type)VALUES ('$email','$pwd','$user_type');";
+	$query = "INSERT INTO sign_in_info (email,pwd,user_type)VALUES ('$email','$pwd_hash','$user_type');";
 
 	insertIntoSignUpInfo($query);
 	}
