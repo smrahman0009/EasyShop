@@ -9,25 +9,108 @@
 $first_name = $last_name = $phone_no = $email = $pwd = $confirm_password ="";
 
 $first_name_er = $last_name_er = $phone_no_er = $email_er = $password_er = $confirm_password_er="";
+
+function auth_user_info(){
+	
+	$flag="true";
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			  if (empty($_POST["first_name"])) {
+			    $GLOBALS["first_name_er"] = "First name is required";  
+			    $flag="false";
+			  } else {
+			  		if (preg_match("/^[A-Z][a-zA-Z ]+$/",$_POST["first_name"]) === 0) {
+			  		//	 $GLOBALS["first_name_er"] = "start with uppercase letter <br> and only contain letter and dashes";
+			  			$flag="false";
+			  		}else{
+			  			$_SESSION["first_name"] = $_POST["first_name"];
+			  		}
+			  }
+			  if (empty($_POST["last_name"])) {
+			 //   $GLOBALS["last_name_er"] = "Last name is required";
+			    $flag="false";
+			  } else {
+			  		if (preg_match("/^[a-zA-Z ]+$/",$_POST["last_name"]) === 0) {
+			  			$GLOBALS["last_name_er"] = "Only contain letter and dashes";
+			  			$flag="false";
+			  		}else{
+			  			$_SESSION["last_name"] = $_POST["last_name"];
+			  		}
+			  }
+			  if (empty($_POST["phone_no"])) {
+			 // 	$GLOBALS["phone_no_er"] = "Phone no required";
+			  } else {
+			  		if (preg_match("/^[0-9]+$/",$_POST["last_name"]) === 0) {
+			  			$GLOBALS["phone_no_er"] = "Only contain numbers";
+			  		}else{
+			  			$_SESSION["phone_no"] = $_POST["phone_no"];
+			  		}
+			  }
+			  if (empty($_POST["email"])) {
+			  //  $GLOBALS["email_er"] = "Email is required";
+			    $flag="false";
+			  } else {
+			   	
+			   	$_SESSION["email"] = $_POST["email"];
+				 /*  	if ((preg_match("/^[a-zA-Z][0-9A-Za-z_]+(.[0-9A-Za-z_]+)*@[0-9A-Za-z_]+(.[0-9a-zA-Z]+)*.[a-zA-Z]{2,4}$/", $_POST["email"]) === 0) {
+				   		$email_er = "Email must be in valid form";
+				   		 $flag="false";
+				   	}
+			   	*/
+			  }
+			  if (empty($_POST["password"])) {
+			  //  $GLOBALS["password_er"] = "Password is required";
+			    $flag="false";
+			  } else {
+			   		if (preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/",$_POST["password"]) == 0) {
+			  			 $GLOBALS["password_er"] = "Muust be in valid form";
+			  			$flag="false";
+			  		}else{
+			  			$_SESSION["password"] = $_POST["password"];
+			  		}
+			  }
+			  
+			  if (empty($_POST["confirm_password"])) {
+		//	    $GLOBALS["confirm_password_er"] = "Confirm password is required";
+			    $flag="false";
+			  } else {
+			   	if ($_POST["password"] != $_POST["confirm_password"]) {
+			   		$GLOBALS["confirm_password_er"] = "Password won't match!!";
+			   		 $flag="false";
+			   	}
+			  }
+			 if ($flag == "true") {
+			 	return true;
+			  }
+			  else
+			   return false; 
+	}
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$flag = auth_user_info();
+	if ($flag == true) {
+
 	$first_name = $_POST["first_name"];
 	$last_name = $_POST["last_name"];
 	$phone_no = $_POST["phone_no"];
 	$email = $_POST["email"];
 	$pwd = $_POST["password"];
+	$user_type="normal";
 
-require("database_file/signin_to_file.php");
-$personal_info = array();
 
-$query = "INSERT INTO personal_info (first_name,last_name,phone_no)
-			VALUES
- ( '$first_name','$last_name','$phone_no');";
+	require("database_file/signin_to_file.php");
+	$personal_info = array();
 
-insertIntoPersonalInfo($query);
+	$query = "INSERT INTO personal_info (first_name,last_name,phone_no)
+				VALUES
+	 ( '$first_name','$last_name','$phone_no');";
 
-$query = "INSERT INTO sign_in_info (email,pwd)VALUES ('$email','$pwd');";
+	insertIntoPersonalInfo($query);
 
-insertIntoSignUpInfo($query);
+	$query = "INSERT INTO sign_in_info (email,pwd,user_type)VALUES ('$email','$pwd','$user_type');";
+
+	insertIntoSignUpInfo($query);
+	}
+	
 			   
 }
 
@@ -45,7 +128,7 @@ insertIntoSignUpInfo($query);
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<!-- action="<?php $_SERVER["PHP_SELF"] ?>" -->
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
-		<form method="post" action="<?php $_SERVER["PHP_SELF"] ?>" onsubmit="return validate()">
+		<form method="post" action="<?php $_SERVER["PHP_SELF"] ?>">
 			<table align="center">
 				<tr>
 					<td>
@@ -111,7 +194,7 @@ insertIntoSignUpInfo($query);
 				</tr>
 				<tr>
 					<td>
-						<input type="submit" name="submit_button" value="Create an Account">
+						<input type="submit" name="submit_button" value="Create an Account" onclick="validate();">
 					</td>
 				</tr>
 			</table>
@@ -172,7 +255,7 @@ insertIntoSignUpInfo($query);
 				return false;
 			}
 			else alert("Password matched!!!");
-			return true;
+			//return true;
 		}
 		
 		return false;
