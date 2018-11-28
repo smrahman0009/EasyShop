@@ -27,9 +27,9 @@ if(isset($_REQUEST["error"]))//echo $_REQUEST["error"];
 			$_SESSION["email"] = $info["email"];
 			$_SESSION["password"] = $info["pwd"];
 			$_SESSION["user_type"] =$info["user_type"];
-			$user_hash_pwd = password_hash($_SESSION["password"],PASSWORD_DEFAULT);
+		//	$hashedPwdInDb = password_hash($_SESSION["password"],PASSWORD_DEFAULT);
 
-			if ($_SESSION["email"] == $_POST["u_email"] && 1 == password_verify($_SESSION["password"],$user_hash_pwd)) {
+			if ($_SESSION["email"] == $_POST["u_email"] && 1 == password_verify($_POST["password"],$_SESSION["password"])) {
 				$_SESSION["flag"]="loginSuccess";
 				$_REQUEST["error"]="";
 				if ($_SESSION["user_type"]=="admin") {
