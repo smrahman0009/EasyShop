@@ -41,16 +41,14 @@ foreach ($product_info as  $info): ?>
 							 echo '<tr>'; 
 							 }
 						?>
-							<td><a href="http://localhost/dashboard/EasyShop/product.php?id=<?php echo $info['id']; ?>">
-										<img src="<?php echo $info['product_image'];?>"width="200" height="200">
-										</a>
-										<?php
-											echo "<h5>" . $info["product_name"] . " ";
-											echo  $info["product_price"] . "$ </br>";
-											//echo $info["id"] . "</h5>";
-										?> 
-										
-										
+							<td bgcolor="white"><a href="http://localhost/dashboard/EasyShop/product.php?id=<?php echo $info['id'] ; ?>">
+									<img src="<?php echo $info['product_image'];?>"width="200" height="200">
+									</a>
+									<?php
+										echo "<h5>" . $info["product_name"] . " ";
+										echo  $info["product_price"] . "$ </br>";
+										//echo $info["id"] . "</h5>";
+									?> 	
 								</td>
 
 						<?php if(($counter % 3) == 0) { 
@@ -62,9 +60,7 @@ foreach ($product_info as  $info): ?>
 <?php echo "<h2>" .$counter." </h2>"; ?>
 								
 
-	
-	
-
+</td>
 
 	<!-- ============ RIGHT COLUMN (CONTENT) ============== -->
 <?php
