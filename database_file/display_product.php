@@ -23,6 +23,7 @@ function loadFromProduct($qry){
 			//echo "Last Name: " . $rows["last_name"] . "</br> ";
 			//echo "Phone No: " . $rows["phone_no"] . "</br>";
 			$temp_array = array();
+			$temp_array["id"] = $rows["id"];
 			$temp_array["product_name"] = $rows["product_name"];
 			$temp_array["product_price"] = $rows["product_price"];
 			$temp_array["product_qty"] = $rows["product_qty"];

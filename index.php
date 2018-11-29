@@ -41,11 +41,15 @@ foreach ($product_info as  $info): ?>
 							 echo '<tr>'; 
 							 }
 						?>
-								<td>
+							<td><a href="http://localhost/dashboard/EasyShop/product.php?id=<?php echo $info['id']; ?>">
 										<img src="<?php echo $info['product_image'];?>"width="200" height="200">
+										</a>
 										<?php
-											echo "Name: " . $info["product_name"];
+											echo "<h5>" . $info["product_name"] . " ";
+											echo  $info["product_price"] . "$ </br>";
+											//echo $info["id"] . "</h5>";
 										?> 
+										
 										
 								</td>
 
