@@ -53,7 +53,11 @@ session_start();
  				<br>
  				Description: <?php echo $info["description"];?>
  			</p>
- 			<input type="button" name="Add to cart" value="ADD to cart">
+ 			<form id="product_form" method="post" action="cart.php">
+ 				<input type="hidden" name="pid" id="pid" value="<?php echo $id; ?>">
+ 				<input type="submit" name="button" id="button" value="ADD to CART">
+ 			</form>
+ 			
  		</td>
  	</tr>
  </table>
