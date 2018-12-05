@@ -61,8 +61,8 @@ if (isset($_POST['pid'])) {
 			   array_push($_SESSION["cart_array"], array("item_id" => $pid, "quantity" => 1));
 		   }
 	}
-//	header("location: cart.php"); 
- //   exit();
+	header("location: cart.php"); 
+    exit();
 }
 ?>
 <?php
@@ -74,6 +74,7 @@ if (isset($_POST['pid'])) {
 <?php
 	////////////////// USER VIEW ///////////////////////////
 	$cartOutput = "";
+	$total_price = 0;
 	if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
    		 $cartOutput = "<h2 align='center'>Your shopping cart is empty</h2>";
 	} 
@@ -90,14 +91,15 @@ if (isset($_POST['pid'])) {
 				$product_description = $info["description"];
 			}
 
-			$total_price = $product_price * $each_item["quantity"];
+			$total_unit_price = $product_price * $each_item["quantity"];
+			$total_price = $total_price + $total_unit_price;
 			//$cartOutput .= "<h2> Cart item $i</h2>";
 		//	$cartOutput ="<tr>";
 			$cartOutput .= "<tr><td>" . $product_name . "</td>";
 			$cartOutput .= "<td>" . $product_description . "</td>";
 			$cartOutput .= "<td>" . $product_price. "</td>";
 			$cartOutput .= "<td>" . $each_item["quantity"] . "</td>";
-			$cartOutput .= "<td>" . $total_price . "</td>";
+			$cartOutput .= "<td>" . $total_unit_price . "</td>";
 
 			$cartOutput .= "<td>"
 						 	."<a href='cart.php?cmd=emptycart'>X</a>".
@@ -121,6 +123,11 @@ if (isset($_POST['pid'])) {
 ?>
 </table>
 <table>
+	<tr>
+		<td>
+			<?php echo $total_price ?>
+		</td>
+	</tr>
 	<tr>
 		<td>
 			<a href='cart.php?cmd=emptycart'>EMPTY SHOPPING CART</a>
