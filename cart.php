@@ -4,7 +4,10 @@ session_start();
 <?php
 	include 'include/header.php';
 ?>
-
+<?php 
+	require("database_file/display_product.php");
+	$product_info = array();
+?>
 <!-- ============ NAVIGATION BAR SECTION ============== -->
 <?php
 	if (isset($_SESSION["user_type"])==false) {
@@ -68,7 +71,6 @@ if (isset($_POST['pid'])) {
 		unset($_SESSION["cart_array"]);
 	}
 ?>
-
 <?php
 	////////////////// USER VIEW ///////////////////////////
 	$cartOutput = "";
@@ -79,11 +81,19 @@ if (isset($_POST['pid'])) {
 		$i = 0;
 		foreach ($_SESSION["cart_array"] as $each_item) {
 			$i++;
-			
+
 			$item_id = $each_item["item_id"];
+			loadFromProduct("SELECT * FROM product where id = '$item_id' LIMIT 1;");
+			foreach ($product_info as $info) {
+				$product_name = $info["product_name"];
+				$product_price = $info["product_price"];
+			}
+
 			$cartOutput .= "<h2> Cart item $i</h2>";
 			$cartOutput .= "item ID: " . $each_item["item_id"] . "<br/>";
 			$cartOutput .= "Item Quantity: " . $each_item["quantity"] . "<br/>";
+			$cartOutput .= "Item Name: " . $product_name . "<br/>";
+			$cartOutput .= "Item price: " . $product_price . "<br/>";
 		/*	while (list($key,$value) = each($each_item)) {
 				$cartOutput .= "$key: $value <br/>";
 			}
