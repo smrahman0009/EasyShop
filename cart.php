@@ -63,6 +63,7 @@ if (isset($_POST['pid'])) {
 }
 ?>
 <?php
+	///////////////// MAKE EMPTY SHOPING CART /////////////////////
 	if (isset($_GET["cmd"]) && $_GET["cmd"] == "emptycart") {
 		unset($_SESSION["cart_array"]);
 	}
@@ -78,10 +79,15 @@ if (isset($_POST['pid'])) {
 		$i = 0;
 		foreach ($_SESSION["cart_array"] as $each_item) {
 			$i++;
+			
+			$item_id = $each_item["item_id"];
 			$cartOutput .= "<h2> Cart item $i</h2>";
-			while (list($key,$value) = each($each_item)) {
+			$cartOutput .= "item ID: " . $each_item["item_id"] . "<br/>";
+			$cartOutput .= "Item Quantity: " . $each_item["quantity"] . "<br/>";
+		/*	while (list($key,$value) = each($each_item)) {
 				$cartOutput .= "$key: $value <br/>";
 			}
+		*/
 		}
 	}
 ?>
