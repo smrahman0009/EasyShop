@@ -87,36 +87,46 @@ if (isset($_POST['pid'])) {
 			foreach ($product_info as $info) {
 				$product_name = $info["product_name"];
 				$product_price = $info["product_price"];
+				$product_description = $info["description"];
 			}
 
-			$price = $product_price * $each_item["quantity"];
-			$cartOutput .= "<h2> Cart item $i</h2>";
-			$cartOutput .= "item ID: " . $each_item["item_id"] . "<br/>";
-			$cartOutput .= "Item Quantity: " . $each_item["quantity"] . "<br/>";
-			$cartOutput .= "Item Name: " . $product_name . "<br/>";
-			$cartOutput .= "Item price: " . $price . "<br/>";
-		/*	while (list($key,$value) = each($each_item)) {
-				$cartOutput .= "$key: $value <br/>";
-			}
-		*/
+			$total_price = $product_price * $each_item["quantity"];
+			//$cartOutput .= "<h2> Cart item $i</h2>";
+		//	$cartOutput ="<tr>";
+			$cartOutput .= "<tr><td>" . $product_name . "</td>";
+			$cartOutput .= "<td>" . $product_description . "</td>";
+			$cartOutput .= "<td>" . $product_price. "</td>";
+			$cartOutput .= "<td>" . $each_item["quantity"] . "</td>";
+			$cartOutput .= "<td>" . $total_price . "</td>";
+
+			$cartOutput .= "<td>"
+						 	."<a href='cart.php?cmd=emptycart'>X</a>".
+						  "</td> </tr>";
 		}
 	}
 ?>
+
+<?php ////////// DISPLAYING SHOPPING CART /////////////////?>
+<table width="100%" border="1px" cellspacing="0" cellpadding="6">
+	<tr>
+		<th width="10%">Product</th>
+		<th width="50%">Description</th>
+		<th width="10%">Unit Price</th>
+		<th width="10%">Quantity</th>
+		<th width="10%">Total</th>
+		<th width="10%">Remove</th>
+	</tr>
 <?php
 	echo $cartOutput;
 ?>
+</table>
 <table>
 	<tr>
-		
-	</tr>
-	<tr>
 		<td>
-			<a href="cart.php?cmd=emptycart">Click here to empty your cart</a>
+			<a href='cart.php?cmd=emptycart'>EMPTY SHOPPING CART</a>
 		</td>
 	</tr>
 </table>
-
-
 </td>
 <!-- ============ RIGHT COLUMN (CONTENT) ============== -->
 <?php
