@@ -89,11 +89,12 @@ if (isset($_POST['pid'])) {
 				$product_price = $info["product_price"];
 			}
 
+			$price = $product_price * $each_item["quantity"];
 			$cartOutput .= "<h2> Cart item $i</h2>";
 			$cartOutput .= "item ID: " . $each_item["item_id"] . "<br/>";
 			$cartOutput .= "Item Quantity: " . $each_item["quantity"] . "<br/>";
 			$cartOutput .= "Item Name: " . $product_name . "<br/>";
-			$cartOutput .= "Item price: " . $product_price . "<br/>";
+			$cartOutput .= "Item price: " . $price . "<br/>";
 		/*	while (list($key,$value) = each($each_item)) {
 				$cartOutput .= "$key: $value <br/>";
 			}
