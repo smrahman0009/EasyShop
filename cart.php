@@ -65,9 +65,10 @@ if (isset($_POST['pid'])) {
     exit();
 }
 ?>
+
 <?php
 	///////////////// MAKE EMPTY SHOPING CART /////////////////////
-	if (isset($_GET["cmd"]) && $_GET["cmd"] == "emptycart") {
+	if (isset($_GET["cmd"]) && $_GET["cmd"] == "emptycart" ) {
 		unset($_SESSION["cart_array"]);
 	}
 ?>
@@ -76,7 +77,7 @@ if (isset($_POST['pid'])) {
 	if (isset($_POST['index_to_remove']) && $_POST['index_to_remove'] != "") {
 	    // Access the array and run code to remove that array index
 	 	$key_to_remove = $_POST['index_to_remove'];
-		if (count($_SESSION["cart_array"]) <= 1) {
+		if (count($_SESSION["cart_array"]) <= 1 ) {
 			unset($_SESSION["cart_array"]);
 		} else {
 			unset($_SESSION["cart_array"]["$key_to_remove"]);
@@ -84,6 +85,7 @@ if (isset($_POST['pid'])) {
 		}
 	}
 ?>
+
 <?php
 	////////////////// USER VIEW ///////////////////////////
 	$cartOutput = "";
@@ -105,6 +107,11 @@ if (isset($_POST['pid'])) {
 
 			$total_unit_price = $product_price * $each_item["quantity"];
 			$total_price = $total_price + $total_unit_price;
+
+			/////////////////// MONEY FORMAT HAVE SOME ISSUES /////////////////
+		/*	setlocale(LC_MONETARY, "en_US");
+ 			$total_price = money_format("%10.2n", $total_price);
+ 			$total_unit_price = money_format("%10.2n", $total_unit_price);*/
 			//$cartOutput .= "<h2> Cart item $i</h2>";
 		//	$cartOutput ="<tr>";
 			$cartOutput .= "<tr><td>" . $product_name . "</td>";
@@ -124,6 +131,7 @@ if (isset($_POST['pid'])) {
 		}
 	}
 ?>
+
 
 <?php ////////// DISPLAYING SHOPPING CART /////////////////?>
 <table width="100%" border="1px" cellspacing="0" cellpadding="6">
