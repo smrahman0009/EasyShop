@@ -23,3 +23,10 @@ SELECT * FROM sign_in_info;
 UPDATE sign_in_info
 SET user_type = "normal"
 WHERE email = "hasan@gmail.com";
+
+
+//////////////////// (TABLE) product /////////////////////////
+
+SELECT product_qty FROM product where id = '$pid';
+
+UPDATE product SET product_qty = '$product_qty' where id = '$pid';
