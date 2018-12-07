@@ -34,7 +34,7 @@ require("database_file/display_product.php");
 $product_info = array();
 loadFromProduct("SELECT * FROM product;");
 $counter = 1;
-echo "<table>";
+echo '<table width="100%" cellspacing="6" cellpadding="6">';
 foreach ($product_info as  $info): ?>
 						<?php 
 							if(($counter % 3) == 1) {    // Check if it's new row
