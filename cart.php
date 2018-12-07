@@ -14,8 +14,8 @@ session_start();
 	if (isset($_SESSION["user_type"])==false) {
 		include 'include/nav_bar_loggedout.php';
 		unset($_SESSION["cart_array"]);
-		header("Location:login.php");
-		exit();
+	//header("Location:cart.php");
+	//	exit();
 		
 	}
 	elseif ($_SESSION["user_type"]=="normal") {

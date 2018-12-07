@@ -51,9 +51,9 @@ session_start();
  				<br>
  				Description: <?php echo $info["description"];?>
  			</p>
- 			<form id="product_form" method="post" action="cart.php">
+ 			<form id="product_form" method="post" action="cart.php" onsubmit="return login_request();">
  				<input type="hidden" name="pid" id="pid" value="<?php echo $id; ?>">
- 				<input type="submit" name="button"  onclick="login_request();" id="button" value="ADD to CART">
+ 				<input type="submit" name="button"  id="button" value="ADD to CART">
  			</form>
  			
 
@@ -63,6 +63,7 @@ session_start();
 					echo "<script>
 							function login_request(){
 								alert('Login First');
+								return false;
 							}
 						</script>";
 				}
