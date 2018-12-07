@@ -9,6 +9,12 @@
 						<input type="button" name="home_button" value="HOME">
 					</a>
 				</td>
+
+				<td width="100%" align="RIGHT">
+					<a href="cart.php">
+						<input type="button" name="cart_button" value="My Cart">
+					</a>
+				</td>
 				<td>
 					<a href="logout.php">
 						<input type="button" name="logout_button" value="Log Out">

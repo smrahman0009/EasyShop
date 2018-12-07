@@ -10,6 +10,11 @@
 					</a>
 				</td>
 				
+				<td width="100%" align="RIGHT">
+					<a href="cart.php">
+						<input type="button" name="cart_button" value="My Cart">
+					</a>
+				</td>
 				<td>
 					<a href="signin.php">
 						<input type="button" name="sign_in_button" value="Sign Up">
@@ -18,11 +23,6 @@
 				<td>
 					<a href="login.php">
 							<input type="button" name="log_in_button" value="Log In">
-					</a>
-				</td>
-				<td>
-					<a href="profile.php">
-							<input type="button" name="profile_button" value="My Profile">
 					</a>
 				</td>
 			</tr>
