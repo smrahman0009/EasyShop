@@ -53,7 +53,7 @@ session_start();
  			</p>
  			<form id="product_form" method="post" action="cart.php" onsubmit="return login_request();">
  				<input type="hidden" name="pid" id="pid" value="<?php echo $id; ?>">
- 				<input type="submit" name="button"  id="button" value="ADD to CART">
+ 				<input type="submit" name="button_cart"  id="button" value="ADD to CART">
  			</form>
  			
 
@@ -67,6 +67,7 @@ session_start();
 							}
 						</script>";
 				}
+				
 			?>
  		</td>
  	</tr>

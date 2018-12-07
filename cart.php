@@ -38,6 +38,14 @@ session_start();
 
 <td width="55%" valign="top" bgcolor="#d2d8c7">
 
+
+<?php
+	
+ //////////////////////////////// UPDATE PRODUCT TABLE //////////////////////
+	
+
+?>
+
 <?php 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //       Section 1 (if user attempts to add something to the cart from the product page)
@@ -50,6 +58,15 @@ if (isset($_POST['pid'])) {
 	if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) { 
 	    // RUN IF THE CART IS EMPTY OR NOT SET
 		$_SESSION["cart_array"] = array(0 => array("item_id" => $pid, "quantity" => 1));
+
+		/////////// UPDATE PRODUCT TABLE //////////////////
+		loadFromProduct("SELECT product_qty FROM product where id = '$pid';");
+		foreach ($product_info as $info) {
+				$product_qty = $info["product_qty"];
+			}
+			$product_qty = $product_qty-1;
+		loadFromProduct("UPDATE product SET product_qty = '$product_qty' where id = '$pid';");
+		/////////////////////// UPDATE product_pqy in PRODUCT TABLE///////////////////////////
 	} else {
 		// RUN IF THE CART HAS AT LEAST ONE ITEM IN IT
 		foreach ($_SESSION["cart_array"] as $each_item) { 
@@ -59,6 +76,15 @@ if (isset($_POST['pid'])) {
 					  // That item is in cart already so let's adjust its quantity using array_splice()
 					  array_splice($_SESSION["cart_array"], $i-1, 1, array(array("item_id" => $pid, "quantity" => $each_item['quantity'] + 1)));
 					  $wasFound = true;
+
+					  /////////// UPDATE PRODUCT TABLE //////////////////
+					loadFromProduct("SELECT product_qty FROM product where id = '$pid';");
+					foreach ($product_info as $info) {
+							$product_qty = $info["product_qty"];
+						}
+						$product_qty = $product_qty-1;
+					loadFromProduct("UPDATE product SET product_qty = '$product_qty' where id = '$pid';");
+					/////////////////////// UPDATE product_pqy in PRODUCT TABLE///////////////////////////
 				  } // close if condition
 		      } // close while loop
 	       } // close foreach loop

@@ -32,7 +32,7 @@ session_start();
 <?php
 require("database_file/display_product.php");
 $product_info = array();
-loadFromProduct("SELECT * FROM product;");
+loadFromProduct("SELECT * FROM product where product_qty > 0;");
 $counter = 1;
 echo '<table width="100%" cellspacing="6" cellpadding="6">';
 foreach ($product_info as  $info): ?>
