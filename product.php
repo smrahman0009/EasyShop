@@ -53,9 +53,20 @@ session_start();
  			</p>
  			<form id="product_form" method="post" action="cart.php">
  				<input type="hidden" name="pid" id="pid" value="<?php echo $id; ?>">
- 				<input type="submit" name="button" id="button" value="ADD to CART">
+ 				<input type="submit" name="button"  onclick="login_request();" id="button" value="ADD to CART">
  			</form>
  			
+
+			<?php
+
+				if (isset($_SESSION["user_type"])==false) {
+					echo "<script>
+							function login_request(){
+								alert('Login First');
+							}
+						</script>";
+				}
+			?>
  		</td>
  	</tr>
  </table>
