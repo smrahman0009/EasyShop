@@ -30,3 +30,21 @@ WHERE email = "hasan@gmail.com";
 SELECT product_qty FROM product where id = '$pid';
 
 UPDATE product SET product_qty = '$product_qty' where id = '$pid';
+
+
+//////////////////// (TABLE) order_info /////////////////////////
+
+CREATE TABLE order_info (
+	order_id int(11) AUTO_INCREMENT PRIMARY KEY not null,
+	customer_id varchar(256) not null,
+	product_id int(11) not null,
+	quantity int(11) not null
+);
+
+INSERT INTO order_info (customer_id,product_id,quantity)
+	VALUES ("ks@gmail.com","1","1");
+
+DELETE FROM order_info WHERE order_id <4;
+
+
+SELECT * FROM order_info ;

@@ -35,6 +35,7 @@ $product_info = array();
 loadFromProduct("SELECT * FROM product where product_qty > 0;");
 $counter = 1;
 echo '<table width="100%" cellspacing="6" cellpadding="6">';
+echo $_SESSION["email"];
 foreach ($product_info as  $info): ?>
 						<?php 
 							if(($counter % 3) == 1) {    // Check if it's new row

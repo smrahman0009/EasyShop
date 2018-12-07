@@ -47,10 +47,12 @@ session_start();
 ?>
 
 <?php 
+//echo $_SESSION["email"];
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //       Section 1 (if user attempts to add something to the cart from the product page)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 if (isset($_POST['pid'])) {
+	//echo "<h1 style='color:red;'>Hello  </h1>";
     $pid = $_POST['pid'];
 	$wasFound = false;
 	$i = 0;
@@ -66,7 +68,16 @@ if (isset($_POST['pid'])) {
 			}
 			$product_qty = $product_qty-1;
 		loadFromProduct("UPDATE product SET product_qty = '$product_qty' where id = '$pid';");
-		/////////////////////// UPDATE product_pqy in PRODUCT TABLE///////////////////////////
+		//////////////////////////////////////////////////
+
+
+		/////////////////////// insert value into porduct_info TABLE///////////////////////////
+	
+		$customer_id = $_SESSION["email"];
+		$product_id = $pid;
+		loadFromProduct("INSERT INTO order_info (customer_id,product_id,quantity)
+		VALUES ('$customer_id','$pid',1);");
+
 	} else {
 		// RUN IF THE CART HAS AT LEAST ONE ITEM IN IT
 		foreach ($_SESSION["cart_array"] as $each_item) { 
@@ -84,7 +95,17 @@ if (isset($_POST['pid'])) {
 						}
 						$product_qty = $product_qty-1;
 					loadFromProduct("UPDATE product SET product_qty = '$product_qty' where id = '$pid';");
-					/////////////////////// UPDATE product_pqy in PRODUCT TABLE///////////////////////////
+
+
+					/////////////////////// UPDATE quantity into order_info TABLE///////////////////////////
+					$product_id = $pid+1;
+					loadFromProduct("SELECT quantity FROM order_info where  product_id ='$product_id';");
+					foreach ($product_info as $info) {
+							$quantity = $info["quantity"];
+						}
+					$quantity = $product_qty;
+					loadFromProduct("UPDATE order_info SET quantity = '$quantity' where  product_id ='$product_id';");
+
 				  } // close if condition
 		      } // close while loop
 	       } // close foreach loop

@@ -37,6 +37,7 @@ session_start();
 	foreach ($product_info as $info) {
 		//echo "id = " . $info["product_image"];
 	}
+	echo $_SESSION["email"];
 ?>
 
  <table>
