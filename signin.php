@@ -13,12 +13,12 @@ $first_name_er = $last_name_er = $phone_no_er = $email_er = $password_er = $conf
 function auth_user_info(){
 	
 	$flag="true";
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		if (isset($_POST["submit_button"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 			  if (empty($_POST["first_name"])) {
 			    $GLOBALS["first_name_er"] = "First name is required";  
 			    $flag="false";
 			  } else {
-			  		if (preg_match("/^[A-Z][a-zA-Z ]+$/",$_POST["first_name"]) === 0) {
+			  		if (preg_match("/^[A-Z][a-z]+$/",$_POST["first_name"]) === 0) {
 			  		//	 $GLOBALS["first_name_er"] = "start with uppercase letter <br> and only contain letter and dashes";
 			  			$flag="false";
 			  		}else{
@@ -26,7 +26,7 @@ function auth_user_info(){
 			  		}
 			  }
 			  if (empty($_POST["last_name"])) {
-			 //   $GLOBALS["last_name_er"] = "Last name is required";
+			    $GLOBALS["last_name_er"] = "Last name is required";
 			    $flag="false";
 			  } else {
 			  		if (preg_match("/^[a-zA-Z ]+$/",$_POST["last_name"]) === 0) {
@@ -37,32 +37,32 @@ function auth_user_info(){
 			  		}
 			  }
 			  if (empty($_POST["phone_no"])) {
-			 // 	$GLOBALS["phone_no_er"] = "Phone no required";
+			  	$GLOBALS["phone_no_er"] = "Phone no required";
 			  } else {
-			  		if (preg_match("/^[0-9]+$/",$_POST["last_name"]) === 0) {
+			  		if (preg_match("/^[0-9]+$/",$_POST["phone_no"]) === 0) {
 			  			$GLOBALS["phone_no_er"] = "Only contain numbers";
 			  		}else{
 			  			$_SESSION["phone_no"] = $_POST["phone_no"];
 			  		}
 			  }
 			  if (empty($_POST["email"])) {
-			  //  $GLOBALS["email_er"] = "Email is required";
+			    $GLOBALS["email_er"] = "Email is required";
 			    $flag="false";
 			  } else {
 			   	
 			   	$_SESSION["email"] = $_POST["email"];
-				 /*  	if ((preg_match("/^[a-zA-Z][0-9A-Za-z_]+(.[0-9A-Za-z_]+)*@[0-9A-Za-z_]+(.[0-9a-zA-Z]+)*.[a-zA-Z]{2,4}$/", $_POST["email"]) === 0) {
+				if (preg_match("/^[^@]+@[^@.]+\.[a-z]+$/i", $_POST["email"]) === 0) {
 				   		$email_er = "Email must be in valid form";
 				   		 $flag="false";
 				   	}
-			   	*/
+			   	
 			  }
 			  if (empty($_POST["password"])) {
-			  //  $GLOBALS["password_er"] = "Password is required";
+			    $GLOBALS["password_er"] = "Password is required";
 			    $flag="false";
 			  } else {
 			   		if (preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/",$_POST["password"]) == 0) {
-			  			 $GLOBALS["password_er"] = "Muust be in valid form";
+			  			 $GLOBALS["password_er"] = "Must contain lowercase,uppercase and number";
 			  			$flag="false";
 			  		}else{
 			  			$_SESSION["password"] = $_POST["password"];
@@ -70,7 +70,7 @@ function auth_user_info(){
 			  }
 			  
 			  if (empty($_POST["confirm_password"])) {
-		//	    $GLOBALS["confirm_password_er"] = "Confirm password is required";
+			    $GLOBALS["confirm_password_er"] = "Confirm password is required";
 			    $flag="false";
 			  } else {
 			   	if ($_POST["password"] != $_POST["confirm_password"]) {
@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	require("database_file/signin_to_file.php");
 	$personal_info = array();
-
+	//echo "<h1 style='color:red;'> Hello I am there </h1>";
 	$query = "INSERT INTO personal_info (first_name,last_name,phone_no)
 				VALUES
 	 ( '$first_name','$last_name','$phone_no');";
@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<!-- action="<?php $_SERVER["PHP_SELF"] ?>" -->
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
-		<form method="post" action="<?php $_SERVER["PHP_SELF"] ?>">
+		<form method="post" action="<?php $_SERVER["PHP_SELF"] ?>"  name="sign_up_form" onsubmit="return validate_form()">
 			<table align="center">
 				<tr>
 					<td>
@@ -199,72 +199,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				</tr>
 				<tr>
 					<td>
-						<input type="submit" name="submit_button" value="Create an Account" onclick="validate();">
+						<input type="submit" name="submit_button" value="Create an Account">
 					</td>
 				</tr>
 			</table>
 		</form>
 	</td>
 
-<script type="text/javascript">
-	function validate(){
-		/////////////// Validate First_name ////////////////////////
-		var first_name = document.getElementById("first-name").value;
-		var f_n_reg= /^[A-Z][a-z]+$/;
-		var f_n_reg_result = f_n_reg.test(first_name);
-
-		/////////////// Validate Last_name ////////////////////////
-		var last_name = document.getElementById("last-name").value;
-		var l_n_reg= /^[A-Za-z]+$/;
-		var l_n_reg_result = l_n_reg.test(last_name);
-
-		/////////////// Validate Phone Numbers ////////////////////////
-		var phone_no = document.getElementById("phone-no").value;
-		var phone_no_reg = /^[0-9]+$/;
-		var phone_no_reg_result = phone_no_reg.test(phone_no);
-
-		/////////////// Validate Email ////////////////////////
-		var email = document.getElementById("email").value;
-		var email_reg = /^[^@]+@[^@.]+\.[a-z]+$/i;
-		var email_reg_result = email_reg.test(email);
-
-		/////////////// Validate Password ////////////////////////
-		/////////////// Must contain a lowercase, uppercase letter and a number//
-		var password = document.getElementById("password").value;  
-		var password_reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/;
-		var password_reg_result = password_reg.test(password);
-
-		if (f_n_reg_result == false) {
-			alert("Start with Uppercase Letter");
-			return false;
-		}
-		 if (l_n_reg_result == false) {
-			alert("Only contain letters ");
-			return false;
-		}
-		if (phone_no_reg_result == false) {
-			alert("Phone no only contain numbers");
-			return false;
-		}
-		 if (email_reg_result == false) {
-			alert("Shoul be valid email address");
-			return false;
-		}
-		 if (password_reg_result == false) {
-			alert("Must contain a lowercase,uppercase and a number");
-			return false;
-		}
-		else if (password_reg_result == true) {
-			if (document.getElementById("password").value != document.getElementById("confirm-password").value) {
-				alert("Password and Confirm password Shoul be matched");
-				return false;
-			}
-			else alert("Password matched!!!");
-			//return true;
-		}
-		
-		return false;
-	}
+<script type="text/javascript" src="js/easyshop.js">
+	
 </script>
 	<!-- ============ RIGHT COLUMN (CONTENT) ============== -->
 <?php
