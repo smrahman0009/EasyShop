@@ -44,7 +44,7 @@ CREATE TABLE order_info (
 INSERT INTO order_info (customer_id,product_id,quantity)
 	VALUES ("ks@gmail.com","1","1");
 
-DELETE FROM order_info WHERE order_id <4;
+
 
 
 SELECT * FROM order_info ;
