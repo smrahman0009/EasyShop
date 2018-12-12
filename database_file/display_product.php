@@ -39,6 +39,19 @@ function loadFromProduct($qry){
 	}
 
 }
+
+function UpdateProduct($qry){
+	//global $product_info;
+
+	$db_server_name = "localhost";
+	$db_user_name = "root";
+	$db_password = "";
+	$db_name = "easyshop";
+	$db_con = mysqli_connect($db_server_name, $db_user_name, $db_password, $db_name);
+
+	//$qry = "SELECT * FROM user_personal_info;";
+	$qry_result = mysqli_query($db_con,$qry);
+}
 	
 //login_auth();
 ?>
