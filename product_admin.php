@@ -37,12 +37,21 @@ session_start();
 ?>
 <?php
 	if (isset($_POST["button_update"])==true) {
-		echo $_POST['id'] . "<br>";
-	 	echo $_POST['product_name'] . "<br>";
-	 	echo $_POST['product_price'] . "<br>";
-	 	echo $_POST['product_qty'] . "<br>";
-	 	echo $_POST['product_category'] . "<br>";
-	 	echo $_POST['description'] . "<br>";
+		 $product_qty = $_POST["product_qty"];
+		$id = $_POST["id"];
+
+
+		echo "id = ".$id . "<br>";
+	 	echo "name = ".$_POST['product_name'] . "<br>";
+	 	echo "Price = ".$_POST['product_price'] . "<br>";
+	 	echo "Quantity = ".$product_qty . "<br>";
+	 	echo "Category = ".$_POST['product_category'] . "<br>";
+	 	echo "Description".$_POST['description'] . "<br>";
+	 
+
+	
+
+	 	UpdateProduct("UPDATE product SET product_qty = '$product_qty' where id = '$id';");
 	 
 	 }
 	 if (isset($_POST["button_delete"])==true) {
