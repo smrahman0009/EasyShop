@@ -35,15 +35,57 @@ session_start();
 	$product_info = array();
 	loadFromProduct("SELECT * FROM product where product_qty > 0 LIMIT 6;");
 ?>
-
-<table>
+<?php
+	if (isset($_POST["button_update"])==true) {
+		echo $_POST['id'] . "<br>";
+	 	echo $_POST['product_name'] . "<br>";
+	 	echo $_POST['product_price'] . "<br>";
+	 	echo $_POST['product_qty'] . "<br>";
+	 	echo $_POST['product_category'] . "<br>";
+	 	echo $_POST['description'] . "<br>";
+	 
+	 }
+	 if (isset($_POST["button_delete"])==true) {
+	 	echo "<h1 style='color:red;'> DELETE </h1>";
+	 }  
+?>
+<table border="1px" cellspacing="0" cellpadding="0">
+	<tr>
+		<th>Id</th><th>Image</th><th>Product Title</th> <th>Product Price</th><th>Quantity</th><th>Category</th><th>Description</th><th>Update</th><th>Delete</th>
+	</tr>
 	<?php foreach ($product_info as $info) { ?>
-		<form>
+		<form action="<?php $_SERVER["PHP_SELF"] ?>" method="post" name="load">
 			<tr>
-				<td><input type="text" name="name" value="<?php echo $info['product_name']; ?>"></td>
-				<td><input type="text" name="price" value="<?php echo $info['product_price']; ?>"></td>
-				<td><input type="text" name="qty" value="<?php echo $info['product_qty']; ?>"></td>
-				<td><input type="button" name="button" value="UPDATE"></td>
+				<td>
+					<input type="text" name="id" value="<?php echo($info['id'])?>" size="1">
+				</td>
+				<td>
+					<img src="<?php echo($info['product_image'])?>" height="100px" height="100px">
+				</td>
+				<td>
+					<input type="text" name="product_name" value="<?php echo $info['product_name']; ?>">
+				</td>
+				<td>
+					<input type="text" name="product_price" value="<?php echo $info['product_price']; ?>">
+				</td>
+				<td>
+					<input type="number" min="0" max="20" name="product_qty" value="<?php echo $info['product_qty']; ?>"></td>
+				<td>
+					<select name="product_category">
+						<option name='<?php echo $info["product_category"]; ?>'><?php echo $info["product_category"]; ?></option>
+					</select>
+				</td>
+				<td>
+					<textarea rews="50" cols="10" name="description">
+						<?php echo $info['description']; ?>
+					</textarea>
+				</td>
+				<td>
+					<input type="submit" name="button_update" value="UPDATE">
+				</td>
+				<td>
+					<input type="submit" name="button_delete" value="DELETE">
+				</td>
 			</tr>
 		</form>
 	<?php } ?>
@@ -55,7 +97,7 @@ session_start();
 
 	<!-- ============ RIGHT COLUMN (CONTENT) ============== -->
 <?php
-	include 'include/right_col_content.php';
+	//include 'include/right_col_content.php';
 ?>
 <!-- ============ FOOTER SECTION ============== -->
 <?php
