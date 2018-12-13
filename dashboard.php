@@ -30,18 +30,11 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]=="" || $_SESSION["user_ty
 	 	include 'include/nav_bar_admin.php';
 	 }
 ?>
-	<!-- ============ LEFT COLUMN (MENU) ============== -->
-<!--	<td width="60%" valign="top" bgcolor="#f5f5f5">
-		<form action="/action_page.php">
-			<h3>Choose a product picture: </h3>
-				<input type="file" name="pic" accept="image/*">
-			</br>
-				<img src="img/f1.jpg" height="60%" width="50%">
-				<br>
-				 <input type="submit">
-		</form>
-	</td>
---!>
+	
+<!-- ============ LEFT COLUMN (MENU) ============== -->
+<?php
+	include 'include/left_col_admin_menu.php';
+?>
 
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<td width="55%" valign="top" bgcolor="#d2d8c7">

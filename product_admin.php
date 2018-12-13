@@ -22,7 +22,7 @@ session_start();
 
 	<!-- ============ LEFT COLUMN (MENU) ============== -->
 <?php
-	include 'include/left_col_menu.php';
+	include 'include/left_col_admin_menu.php';
 ?>
 
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->

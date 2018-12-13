@@ -4,10 +4,10 @@
 			<h3>Catagory</h3>
 			<ul style="list-style: none;">
 				
-				<li><a href="#">Mens Wear</a> </li>
-				<li><a href="#">Womens Wear</a></li>
-				<li><a href="#">Kids</a> </li>
-				<li><a href="#">Gadgets</a></li>
+				<li><a href="product_admin.php">PRODUCT INFORMATION</a> </li>
+				<li><a href="dashboard.php">DASHBOARD</a></li>
+				<li><a href="admin.php">ADMIN</a> </li>
+				<li><a href="index.php">HOME</a></li>
 			</ul>
 		</td>
 	';

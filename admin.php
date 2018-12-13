@@ -24,7 +24,7 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]=="" || $_SESSION["user_ty
 ?>
 	<!-- ============ LEFT COLUMN (MENU) ============== -->
 <?php
-	include 'include/left_col_menu.php';
+	include 'include/left_col_admin_menu.php';
 ?>
 
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
