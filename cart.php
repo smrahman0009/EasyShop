@@ -68,6 +68,7 @@ if (isset($_POST['pid'])) {
 			}
 			$product_qty = $product_qty-1;
 		loadFromProduct("UPDATE product SET product_qty = '$product_qty' where id = '$pid';");
+			echo "<h1 style='color:red;'>UPDATE product table </h1>";
 		//////////////////////////////////////////////////
 
 
@@ -95,7 +96,7 @@ if (isset($_POST['pid'])) {
 						}
 						$product_qty = $product_qty-1;
 					loadFromProduct("UPDATE product SET product_qty = '$product_qty' where id = '$pid';");
-
+					echo "<h1 style='color:red;'>UPDATE product table </h1>";
 
 					/////////////////////// UPDATE quantity into order_info TABLE///////////////////////////
 					$product_id = $pid+1;
@@ -143,6 +144,7 @@ if (isset($_POST['pid'])) {
 	$cartOutput = "";
 	$total_price = 0;
 	if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
+		//$debug=0;
    		 $cartOutput = "<h2 align='center'>Your shopping cart is empty</h2>";
 	} 
 	else {
@@ -150,6 +152,9 @@ if (isset($_POST['pid'])) {
 		foreach ($_SESSION["cart_array"] as $each_item) {
 
 			$item_id = $each_item["item_id"];
+
+			//$debug = $item_id+$debug;
+			echo "<h1 style='color:red;'>".$item_id."</h1>";
 			loadFromProduct("SELECT * FROM product where id = '$item_id' LIMIT 1;");
 			foreach ($product_info as $info) {
 				$product_name = $info["product_name"];

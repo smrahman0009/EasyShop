@@ -1,7 +1,7 @@
 <?php
 	echo '
 		<td width="20%" valign="top" bgcolor="#f5f5f5">
-			<h3>Catagory</h3>
+			<h3>ADMIN ZONE</h3>
 			<ul style="list-style: none;">
 				
 				<li><a href="product_admin.php">PRODUCT INFORMATION</a> </li>

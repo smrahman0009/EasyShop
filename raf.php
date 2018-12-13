@@ -1,64 +1,64 @@
+<?php 
+	
 
-	$pro_category = $pro_name = $pro_price = $pro_quantity = $pro_description = "";
-	$pro_category_er = $pro_name_er = $pro_price_er = $pro_quantity_er = $pro_description_er = "";
 
-	function auth_product_info(){
-		  $flag="true";
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$db_server_name = "localhost";
+	$db_user_name = "root";
+	$db_password = "";
+	$db_name = "easyshop";
+	$db_con = mysqli_connect($db_server_name, $db_user_name, $db_password, $db_name);
 
-			$_SESSION["pro_category"] = $_POST["pro_category"];
-			$_SESSION["pro_description"] = $_POST["pro_description"];
+	$product_id = 3;
+	$qry = "SELECT quantity FROM order_info where product_id = $product_id ";
 
-			  if (empty($_POST["pro_name"])) { 
-			    $flag="false";
-			    $pro_name_er = "procuct name required";
-			  } else {
-			  		if (preg_match("/^[a-zA-Z ]+$/",$_POST["pro_name"]) === 0) {
-			  			$flag="false";
-			  			$pro_name_er = "procuct name valid format";
-			  		}else{
-			  			$_SESSION["pro_name"] = $_POST["pro_name"];
-			  		}
-			  }
+	$result = mysqli_query($db_con,$qry);
 
-			  if (empty($_POST["pro_price"])) {
-			    $flag="false";
-			    $pro_price_er = "price required";
-			  } else {
-			  		if (preg_match("/^[0-9.]+$/",$_POST["pro_price"]) === 0) {
-			  			$flag="false";
-			  			 $pro_price_er = "invalid format";
-			  		}else{
-			  			$_SESSION["pro_price"] = $_POST["pro_price"];
-			  		}
-			  }
+	//$row = mysqli_fetch_row($result);
+	//echo $row[0];
+	$customer_id = "mushfik@gmail.com";
+	$product_id = 2;
+	$quantity = 1;
 
-			  if (empty($_POST["pro_quantity"])) {
-			    $flag="false";
-			    $pro_quantity_er = "quantity required";
-			  } else {
-			  		if (preg_match("/^[0-9]+$/",$_POST["pro_quantity"]) === 0) {
-			  			$pro_quantity_er = "Only numbers";
-			  			$flag="false";
-			  		}else{
-			  			$_SESSION["pro_quantity"] = $_POST["pro_quantity"];
-			  		}
-			  }
+	if (!$result->num_rows) {
+		////////// IF product not found then new row inserted into "order_info" table///////////////
 
-			//  save_pro_info();
-			 if ($flag == "true") {
+		$qry = "INSERT INTO order_info (customer_id,product_id,quantity)
+		VALUES ('$customer_id','$product_id','$quantity');";
 
-			 	header("Location: database_file/product_to_file.php");
-				exit();
-			 	 /* Redirect browser */
-				
-			  //	include("raf.php");
-			  } 
-			  else {
-			  	echo "Wrong";
-			  //	header("Location:../dashboard.php");
-			 // 	exit();
-			  }
+		 $result = mysqli_query($db_con,$qry);
+		 echo $result;
 	}
-}
-auth_product_info();
+	else {
+		////////////// UPDATE PRODUCT QUANTITY IN "order_info" table ///////////////
+
+		$qry = "SELECT quantity FROM order_info where product_id = '$product_id';";
+		$result = mysqli_query($db_con,$qry);
+		var_dump($result);
+		$row = mysqli_fetch_row($result);
+		$quantity = $quantity+$row[0];
+
+		$qry = "UPDATE order_info SET quantity = '$quantity' where product_id = '$product_id';";
+		$result = mysqli_query($db_con,$qry);
+		
+	}
+
+
+	echo "</br>";
+	$qty="";
+	//var_dump($result);
+	//echo $qry_result;
+	if (!$result) {
+	//	echo "<h1 style='color:red;'>Not found</h1>";
+	}
+	else{
+		
+		
+	//	echo "row: " . $row;
+		
+	}
+
+	
+
+	
+
+?>

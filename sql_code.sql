@@ -25,6 +25,8 @@ SET user_type = "normal"
 WHERE email = "hasan@gmail.com";
 
 
+
+
 //////////////////// (TABLE) product /////////////////////////
 
 SELECT product_qty FROM product where id = '$pid';
@@ -35,6 +37,8 @@ UPDATE product SET product_name = '$product_name', product_price = '$product_pri
 description = '$description' where id = '$id';
 
 DELETE FROM product WHERE user_id = '$id';
+
+
 
 
 //////////////////// (TABLE) order_info /////////////////////////
@@ -49,7 +53,8 @@ CREATE TABLE order_info (
 INSERT INTO order_info (customer_id,product_id,quantity)
 	VALUES ("ks@gmail.com","1","1");
 
-
-
+UPDATE order_info SET product_id = '$product_id' where id = '$pid';
 
 SELECT * FROM order_info ;
+
+DELETE FROM order_info WHERE order_id = 20;
