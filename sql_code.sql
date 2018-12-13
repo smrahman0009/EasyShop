@@ -31,6 +31,11 @@ SELECT product_qty FROM product where id = '$pid';
 
 UPDATE product SET product_qty = '$product_qty' where id = '$pid';
 
+UPDATE product SET product_name = '$product_name', product_price = '$product_price', product_qty = '$product_qty',
+description = '$description' where id = '$id';
+
+DELETE FROM product WHERE user_id = '$id';
+
 
 //////////////////// (TABLE) order_info /////////////////////////
 

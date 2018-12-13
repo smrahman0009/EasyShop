@@ -31,9 +31,15 @@ session_start();
 		
 <div id="products">
 <?php
+function DisplayProduct(){
+	loadFromProduct("SELECT * FROM product where product_qty > 0 LIMIT 6;");
+} 
+
+?>
+<?php
 	require("database_file/display_product.php");
 	$product_info = array();
-	loadFromProduct("SELECT * FROM product where product_qty > 0 LIMIT 6;");
+	
 ?>
 
 <?php
@@ -56,12 +62,15 @@ session_start();
 	
 
 	 	UpdateProduct("UPDATE product SET product_name = '$product_name', product_price = '$product_price', product_qty = '$product_qty',description = '$description' where id = '$id';");
-	 	loadFromProduct("SELECT * FROM product where product_qty > 0 LIMIT 6;");
+	 
 	 
 	 }
-	 if (isset($_POST["button_delete"])==true) {
-	 	echo "<h1 style='color:red;'> DELETE </h1>";
+	 ///////////////////////////// DELETE PRODUCT FROM PRODUCT TABLE //////////////////////
+	 elseif (isset($_POST["button_delete"])==true && $_SERVER["REQUEST_METHOD"] =="POST") {
+	 		$id = $_POST["id"];
+	 		UpdateProduct("DELETE FROM product WHERE id = '$id';");
 	 }  
+	DisplayProduct();
 ?>
 <table border="1px" cellspacing="0" cellpadding="0">
 	<tr>
