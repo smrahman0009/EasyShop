@@ -35,11 +35,15 @@ session_start();
 	$product_info = array();
 	loadFromProduct("SELECT * FROM product where product_qty > 0 LIMIT 6;");
 ?>
-<?php
-	if (isset($_POST["button_update"])==true) {
-		 $product_qty = $_POST["product_qty"];
-		$id = $_POST["id"];
 
+<?php
+///////////////////////////// UPDATE PRODUCT INFO ///////////////////////////////
+	if (isset($_POST["button_update"])==true && $_SERVER["REQUEST_METHOD"] =="POST") {
+		$id = $_POST["id"];
+		$product_name = $_POST['product_name'];
+		$product_price = $_POST['product_price'];
+		$product_qty = $_POST["product_qty"];
+		$description = $_POST['description'];
 
 		echo "id = ".$id . "<br>";
 	 	echo "name = ".$_POST['product_name'] . "<br>";
@@ -51,7 +55,8 @@ session_start();
 
 	
 
-	 	UpdateProduct("UPDATE product SET product_qty = '$product_qty' where id = '$id';");
+	 	UpdateProduct("UPDATE product SET product_name = '$product_name', product_price = '$product_price', product_qty = '$product_qty',description = '$description' where id = '$id';");
+	 	loadFromProduct("SELECT * FROM product where product_qty > 0 LIMIT 6;");
 	 
 	 }
 	 if (isset($_POST["button_delete"])==true) {
