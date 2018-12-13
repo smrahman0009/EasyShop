@@ -62,25 +62,11 @@ if (isset($_POST['pid'])) {
 		$_SESSION["cart_array"] = array(0 => array("item_id" => $pid, "quantity" => 1));
 
 		/////////// UPDATE PRODUCT TABLE //////////////////
-		loadFromProduct("SELECT product_qty FROM product where id = '$pid';");
-		foreach ($product_info as $info) {
-				$product_qty = $info["product_qty"];
-			}
-			$product_qty = $product_qty-1;
-		loadFromProduct("UPDATE product SET product_qty = '$product_qty' where id = '$pid';");
-			echo "<h1 style='color:red;'>UPDATE product table </h1>";
-		//////////////////////////////////////////////////
-
-
-		/////////////////////// insert value into porduct_info TABLE///////////////////////////
-	
-		$customer_id = $_SESSION["email"];
-		$product_id = $pid;
-		loadFromProduct("INSERT INTO order_info (customer_id,product_id,quantity)
-		VALUES ('$customer_id','$pid',1);");
-
+		adjustCart($pid,$_SESSION["email"]);
+		
 	} else {
 		// RUN IF THE CART HAS AT LEAST ONE ITEM IN IT
+		adjustCart($pid,$_SESSION["email"]);
 		foreach ($_SESSION["cart_array"] as $each_item) { 
 		      $i++;
 		      while (list($key, $value) = each($each_item)) {
@@ -90,22 +76,7 @@ if (isset($_POST['pid'])) {
 					  $wasFound = true;
 
 					  /////////// UPDATE PRODUCT TABLE //////////////////
-					loadFromProduct("SELECT product_qty FROM product where id = '$pid';");
-					foreach ($product_info as $info) {
-							$product_qty = $info["product_qty"];
-						}
-						$product_qty = $product_qty-1;
-					loadFromProduct("UPDATE product SET product_qty = '$product_qty' where id = '$pid';");
-					echo "<h1 style='color:red;'>UPDATE product table </h1>";
-
-					/////////////////////// UPDATE quantity into order_info TABLE///////////////////////////
-					$product_id = $pid+1;
-					loadFromProduct("SELECT quantity FROM order_info where  product_id ='$product_id';");
-					foreach ($product_info as $info) {
-							$quantity = $info["quantity"];
-						}
-					$quantity = $product_qty;
-					loadFromProduct("UPDATE order_info SET quantity = '$quantity' where  product_id ='$product_id';");
+						
 
 				  } // close if condition
 		      } // close while loop
@@ -154,7 +125,6 @@ if (isset($_POST['pid'])) {
 			$item_id = $each_item["item_id"];
 
 			//$debug = $item_id+$debug;
-			echo "<h1 style='color:red;'>".$item_id."</h1>";
 			loadFromProduct("SELECT * FROM product where id = '$item_id' LIMIT 1;");
 			foreach ($product_info as $info) {
 				$product_name = $info["product_name"];
