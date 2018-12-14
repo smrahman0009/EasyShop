@@ -5,6 +5,11 @@
 	loadFromProduct("SELECT * FROM product where product_category = '$product_category';");
 	$counter = 1;
 	echo '<table width="100%" cellspacing="6" cellpadding="6">';
+	echo '<tr>
+			<td></td><td></td>
+			<td><input type="text" name="search_bar" id="search-bar"><button id="search-button" value="go">Search
+			</td>
+			</tr>';
 	foreach ($product_info as  $info): ?>
 							<?php 
 								if(($counter % 3) == 1) {    // Check if it's new row

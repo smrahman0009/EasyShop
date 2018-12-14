@@ -15,8 +15,9 @@ session_start();
 
 			var productCount = 6;
 			var product_category="kids";
+			var search= document.getElementById('search-bar');
 
-			$("button").click(function(){
+			$("#show-more").click(function(){
 				
 				productCount = productCount + 6;
 				$("#products").load("database_file/load-products.php",{
@@ -57,7 +58,27 @@ session_start();
 			});
 
 
+			
+
+});
+$(document).ready(function(e){
+	$("#search-bar").keyup(function()
+	{
+				
+				$("#products").show();
+				var x = $(this).val();
+				$.ajax({
+					type:'GET';
+					url:'database_file/load-products-search.php';
+					data:'q='+x;
+					seuccess:function(data)
+					{
+						$("#products").html(data);
+					}
+				});
+
 		});
+});
 	</script>
 </head>
 <body>
@@ -94,6 +115,11 @@ session_start();
 	loadFromProduct("SELECT * FROM product where product_qty > 0 LIMIT 6;");
 	$counter = 1;
 	echo '<table width="100%" cellspacing="6" cellpadding="6">';
+	echo '<tr>
+			<td></td><td></td>
+			<td><input type="search" name="search_bar" id="search-bar"><button id="search-button" value="go">Search
+			</td>
+			</tr>';
 	foreach ($product_info as  $info): ?>
 							<?php 
 								if(($counter % 3) == 1) {    // Check if it's new row
@@ -116,7 +142,7 @@ session_start();
 	<?php $counter++; ?>				
 	<?php endforeach; ?>
 	<?php echo "<tr> <td></td> <td >
-		<button style='position:center;' width='100%'>show more </button>
+		<button style='position:center;' width='100%' id='show-more'>show more </button>
 	</td> <td> </td></tr>"; ?>
 	
 	<?php echo "</table>"; ?>
