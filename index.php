@@ -23,6 +23,15 @@ session_start();
 
 			});
 
+			$("#test").click(function(){
+				
+				productCount = productCount -7;
+				$("#products").load("database_file/load-products.php",{
+					productNewCount : productCount
+				});
+
+			});
+
 		});
 	</script>
 </head>
@@ -57,7 +66,7 @@ session_start();
 <?php
 	require("database_file/display_product.php");
 	$product_info = array();
-	loadFromProduct("SELECT * FROM product where product_qty > 0 LIMIT 6;");
+	loadFromProduct("SELECT * FROM product where product_qty > 0 LIMIT 3;");
 	$counter = 1;
 	echo '<table width="100%" cellspacing="6" cellpadding="6">';
 	foreach ($product_info as  $info): ?>
@@ -83,6 +92,9 @@ session_start();
 	<?php endforeach; ?>
 	<?php echo "<tr> <td></td> <td >
 		<button style='position:center;' width='100%'>show more </button>
+	</td> <td> </td></tr>"; ?>
+	<?php echo "<tr> <td></td> <td >
+		<button id='test' style='position:center;' width='100%'>Test </button>
 	</td> <td> </td></tr>"; ?>
 	<?php echo "</table>"; ?>
 									

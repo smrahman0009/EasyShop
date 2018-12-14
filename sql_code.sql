@@ -58,3 +58,20 @@ UPDATE order_info SET product_id = '$product_id' where id = '$pid';
 SELECT * FROM order_info ;
 
 DELETE FROM order_info WHERE order_id = 20;
+
+
+
+//////////////////// (TABLE) address_info /////////////////////////
+
+CREATE TABLE address_info (
+	email_id varchar(256)  PRIMARY KEY not null,
+	city varchar(256) not null,
+	area varchar(256) not null,
+	road varchar(256) not null,
+	house_no varchar(256) not null,
+	flat_no varchar(256) not null,
+	postal_code int(11) not null
+);
+
+INSERT INTO address_info (email_id,city,area,road,house_no,flat_no,postal_code)
+	VALUES ("mushfik@gmail.com","Dhaka","Bashundhara Block C","7","194A","52A",071);
