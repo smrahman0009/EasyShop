@@ -6,11 +6,11 @@
 <?php
 	include 'include/header.php';
 
-$city = $area = $road_no = $house = $flat_no = $postal_code ="";
+$city = $area = $road = $house = $flat_no = $postal_code ="";
 
-$city_er = $area_er = $road_no_er = $house_er = $flat_no_er = $postal_code_er="";
+$city_er = $area_er = $road_er = $house_er = $flat_no_er = $postal_code_er="";
 
-function auth_user_info(){
+/*function auth_user_info(){
 	
 	$flag="true";
 		if (isset($_POST["submit_button"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	//////////////// PERSONAL INFO/////////////////////////
 	$city = $_POST["first_name"];
 	$area = $_POST["last_name"];
-	$road_no = $_POST["phone_no"];
+	$road = $_POST["phone_no"];
 
 	//////////////// SIGN IN INFO/////////////////////////
 	$house = $_POST["email"];
@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	//echo "<h1 style='color:red;'> Hello I am there </h1>";
 	$query = "INSERT INTO personal_info (first_name,last_name,phone_no)
 				VALUES
-	 ( '$city','$area','$road_no');";
+	 ( '$city','$area','$road');";
 
 	insertIntoPersonalInfo($query);
 
@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 	
 			   
-}
+}*/
 
 	
 ?>
@@ -130,14 +130,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<!-- action="<?php $_SERVER["PHP_SELF"] ?>" -->
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
-		<form method="post" action="<?php $_SERVER["PHP_SELF"] ?>"  name="sign_up_form" onsubmit="">
+		<form method="post" action="delivery_info.php"  name="delivery_form" onsubmit="return delivery_form()">
 			<table align="center">
 				<tr >
 					<td>
 						<p>Delivery Information</p>
 						<hr>
 						<p>City</p>
-						<input type="text" id="first-name" name="first_name" placeholder="Start with Uppercase Letter">
+						<input type="text" id="city" name="city" placeholder="Your current name">
 						<span class="error"> <?php echo $city_er; ?></span>
 					</td>
 				</tr>
@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<tr>
 					<td>
 						<p>Area</p>
-						<input type="text" id="last-name" name="last_name" placeholder="Only contain letters ">
+						<input type="text" id="area-no" name="area_no" placeholder="Your area">
 						<span class="error"> <?php echo $area_er; ?></span>
 					</td>
 				</tr>
@@ -153,8 +153,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<tr>
 					<td>
 						<p>Road</p>
-						<input type="tel" id="phone-no" name="phone_no" placeholder="Only contain numbers">
-						<span class="error"> <?php echo $road_no_er; ?></span>
+						<input type="text" id="road-no" name="road_no" placeholder="Road no">
+						<span class="error"> <?php echo $road_er; ?></span>
 					</td>
 				</tr>
 
@@ -163,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						<p>
 							House
 						</p>
-						<input type="email" id="email" name="email" placeholder="Should be valid email address">
+						<input type="text" id="house-no" name="house_no" placeholder="Your house no">
 						<span class="error"> <?php echo $house_er; ?> </span>
 					</td>
 				</tr>
@@ -172,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						<p>
 							Flat No
 						</p>
-						<input type="Password" id="password" name="password" placeholder="Contain a lowercase,uppercase & numbers">
+						<input type="text" id="flat-no" name="flat_no" placeholder="Your flat no">
 						<span class="error"> <?php echo $flat_no_er; ?></span>
 					</td>
 				</tr>
@@ -181,21 +181,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						<p>
 							Postal Code
 						</p>
-						<input type="Password" id="confirm-password" name="confirm_password">
+						<input type="number" id="postal-code" name="postal_code">
 						<span class="error"> <?php echo $postal_code_er; ?></span>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="submit" name="submit_button" value="Create an Account">
+						<input type="submit" name="submit_button" value="submit">
 					</td>
 				</tr>
 			</table>
 		</form>
 	</td>
 
-<script type="text/javascript" src="js/easyshop.js">
-	
+<script type="text/javascript">
+	function delivery_form(){
+		/////////////// Validate city ////////////////////////
+		var city = document.getElementById("city").value;
+		var city_reg = /^[A-Z][a-z]+$/;
+		var city_reg_result = city_reg.test(city);
+		alert("City name");
+
+		/////////////// Validate area_no ////////////////////////
+		var area_no = document.getElementById("area-no").value;
+		var area_no_reg= /^[A-Za-z0-9]+$/;
+		var area_no_reg_result = area_no_reg.test(area_no);
+
+		/////////////// Validate road_no Numbers ////////////////////////
+		var road_no = document.getElementById("road-no").value;
+		var road_no_reg = /^[0-9a-zA-Z]+$/;
+		var road_no_reg_result = road_no_reg.test(road_no);
+
+		/////////////// Validate house_no ////////////////////////
+		var house_no = document.getElementById("house-no").value;
+		var house_no_reg = /^[0-9a-zA-Z]+$/i;
+		var house_no_reg_result = house_no_reg.test(house_no);
+
+		/////////////// Validate flat_no ////////////////////////
+		/////////////// Must contain a lowercase, uppercase letter and a number//
+		var flat_no = document.getElementById("flat-no").value;  
+		var flat_no_reg = /^[0-9a-zA-Z]+$/;
+		var flat_no_reg_result = flat_no_reg.test(flat_no);
+
+		/////////////// Postal Code ////////////////////////
+		var postal_no = document.getElementById("postal-code").value;
+		var postal_no_reg = /^[0-9]+$/;
+		var postal_no_reg_result = postal_no_reg.test(postal_no);
+
+		if (city=="") { alert("city name required"); return false;}
+		else if (area_no == "") {alert("city name required"); return false;}
+		else if (road_no =="") {alert("city name required"); return false;}
+		else if (house_no == "") {alert("House no required"); return false;}
+		else if (flat_no =="") {alert("Flat no required"); return false;}
+		return false;
+	}
 </script>
 	<!-- ============ RIGHT COLUMN (CONTENT) ============== -->
 <?php
