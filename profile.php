@@ -6,31 +6,31 @@
 	exit();
 }
 
-$first_name = $last_name = $phone_no = $password = $email= "";
-function get_user_info(){
-		$auth=array();
-		$myfile = fopen("database/user_info.txt", "r") or die("Unable to open file!");
 
-		while($line=fgets($myfile)){
-		$line=trim($line);
-		$up=explode(" ",$line);
 
-		if ($up[3] === $_SESSION["email"]) {
-			$GLOBALS["first_name"] = $up[0];
-			$GLOBALS["last_name"] = $up[1];
-			$GLOBALS["phone_no"] = $up[2];
-			$GLOBALS["password"] = $up[4];
-			$GLOBALS["email"] = $up[3];
-		}
-	}
-}
 ?>
 <?php
 	include 'include/header.php';
 ?>
+<?php 
+$first_name = $last_name = $phone_no = $password = $email= "";
+	require("database_file/display_product.php");
+	$PersonalInfo = array();
+
+	$email = $_SESSION["email"];
+	$qry = "SELECT * FROM sign_in_info WHERE email = '$email';";
+	loadProfileInfo($qry);
+
+	foreach ($PersonalInfo as $info) {
+		$first_name = $info["first_name"];
+		$last_name = $info["last_name"];
+		$phone_no = $info["phone_no"];
+	}
+
+
+?>
 <!-- ============ NAVIGATION BAR SECTION ============== -->
 <?php
-	echo $_SESSION["email"];
 	if (isset($_SESSION["user_type"])==false) {
 		include 'include/nav_bar_loggedout.php';
 	}
@@ -43,8 +43,6 @@ function get_user_info(){
 ?>
 <!-- ============ LEFT COLUMN (MENU) ============== -->
 <?php
-	echo $_SESSION["email"];
-	
 	if ($_SESSION["user_type"]=="normal") {
 		include 'include/left_col_user.php';
 	 } 
