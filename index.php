@@ -15,7 +15,7 @@ session_start();
 
 			var productCount = 6;
 			var product_category="kids";
-			var search= document.getElementById('search-bar');
+			var search= document.getElementById('search-bar').value;
 
 			$("#show-more").click(function(){
 				
@@ -57,29 +57,19 @@ session_start();
 
 			});
 
+			$("#search-button").click(function(){
+				
+				$("#products").load("database_file/load-products-search.php",{
+					product_category : document.getElementById("search-bar").value
+				});
+
+			});
 
 			
 
 });
-$(document).ready(function(e){
-	$("#search-bar").keyup(function()
-	{
-				
-				$("#products").show();
-				var x = $(this).val();
-				$.ajax({
-					type:'GET';
-					url:'database_file/load-products-search.php';
-					data:'q='+x;
-					seuccess:function(data)
-					{
-						$("#products").html(data);
-					}
-				});
 
-		});
-});
-	</script>
+</script>
 </head>
 <body>
 
@@ -117,7 +107,7 @@ $(document).ready(function(e){
 	echo '<table width="100%" cellspacing="6" cellpadding="6">';
 	echo '<tr>
 			<td></td><td></td>
-			<td><input type="search" name="search_bar" id="search-bar"><button id="search-button" value="go">Search
+			<td><input type="text" name="search_bar" id="search-bar"><button id="search-button">Search
 			</td>
 			</tr>';
 	foreach ($product_info as  $info): ?>
