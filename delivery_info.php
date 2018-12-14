@@ -200,7 +200,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		var city = document.getElementById("city").value;
 		var city_reg = /^[A-Z][a-z]+$/;
 		var city_reg_result = city_reg.test(city);
-		alert("City name");
 
 		/////////////// Validate area_no ////////////////////////
 		var area_no = document.getElementById("area-no").value;
@@ -233,8 +232,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		else if (road_no =="") {alert("city name required"); return false;}
 		else if (house_no == "") {alert("House no required"); return false;}
 		else if (flat_no =="") {alert("Flat no required"); return false;}
+
+		else if (city_reg_result == false) {
+			alert("First Name required");
+			return false;
+		}
+		else if (area_no_reg_result == false) {
+			alert("Last Name only contain letters ");
+			return false;
+		}
+		else if (road_no == "") {
+			alert("Phone number required");
+			return false;
+		}
+		else if (road_no_reg_result == false) {
+			alert("Phone no only contain numbers");
+			return false;
+		}
+		else if (house_no_reg_result == false) {
+			alert("invalid house_no address");
+			return false;
+		}
+		else if (flat_no_reg_result == false) {
+			alert("Must contain a lowercase,uppercase and a number");
+			return false;
+		}
+		else if (document.getElementById("flat_no").value == "") {
+			alert("Empty flat_no field");
+			return false;
+		}
+		else if (flat_no_reg_result == true) {
+			if (document.getElementById("flat_no").value != document.getElementById("confirm-flat_no").value) {
+				alert("flat_no and Confirm flat_no Shoul be matched");
+				return false;
+			}
+			else alert("flat_no matched!!!");
+			return false;
+		}
+		
 		return false;
 	}
+	
 </script>
 	<!-- ============ RIGHT COLUMN (CONTENT) ============== -->
 <?php
