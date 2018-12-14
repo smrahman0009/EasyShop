@@ -15,8 +15,6 @@ $city = $area = $road = $house = $flat_no = $postal_code ="";
 $city_er = $area_er = $road_er = $house_er = $flat_no_er = $postal_code_er="";
 
 if (isset($_POST["submit_button"]) && $_SERVER["REQUEST_METHOD"] =="POST") {
-	echo("<h1>what the hell is going on </h1>");
-	
 	$email_id = $_SESSION["email"];
 	$city = $_POST["city"];
 	$area = $_POST["area"];
@@ -41,7 +39,7 @@ if (isset($_POST["submit_button"]) && $_SERVER["REQUEST_METHOD"] =="POST") {
 ?>
 	<!-- ============ LEFT COLUMN (MENU) ============== -->
 <?php
-	include 'include/left_col_menu.php';
+	include 'include/left_col_user.php';
 ?>
 
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->

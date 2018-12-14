@@ -24,13 +24,13 @@ function get_user_info(){
 		}
 	}
 }
-get_user_info();
 ?>
 <?php
 	include 'include/header.php';
 ?>
 <!-- ============ NAVIGATION BAR SECTION ============== -->
 <?php
+	echo $_SESSION["email"];
 	if (isset($_SESSION["user_type"])==false) {
 		include 'include/nav_bar_loggedout.php';
 	}
@@ -40,6 +40,18 @@ get_user_info();
 	 elseif ($_SESSION["user_type"] =="admin") {
 	 	include 'include/nav_bar_admin.php';
 	 }
+?>
+<!-- ============ LEFT COLUMN (MENU) ============== -->
+<?php
+	echo $_SESSION["email"];
+	
+	if ($_SESSION["user_type"]=="normal") {
+		include 'include/left_col_user.php';
+	 } 
+	 elseif ($_SESSION["user_type"] =="admin") {
+	 	include 'include/left_col_admin_menu.php';
+	 }
+	
 ?>
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<!-- action="<?php $_SERVER["PHP_SELF"] ?>" -->
