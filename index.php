@@ -14,6 +14,8 @@ session_start();
 		$(document).ready(function (){
 
 			var productCount = 6;
+			var product_category="kids";
+
 			$("button").click(function(){
 				
 				productCount = productCount + 6;
@@ -23,14 +25,37 @@ session_start();
 
 			});
 
-			$("#test").click(function(){
+			$("#mens-wear").click(function(){
 				
-				productCount = productCount -7;
-				$("#products").load("database_file/load-products.php",{
-					productNewCount : productCount
+				$("#products").load("database_file/load-products-ctg.php",{
+					product_category : "mens-wear"
 				});
 
 			});
+
+			$("#womens-wear").click(function(){
+				
+				$("#products").load("database_file/load-products-ctg.php",{
+					product_category : "womens-wear"
+				});
+
+			});
+
+			$("#kids").click(function(){
+				
+				$("#products").load("database_file/load-products-ctg.php",{
+					product_category : "kids"
+				});
+
+			});
+			$("#gadgets").click(function(){
+				
+				$("#products").load("database_file/load-products-ctg.php",{
+					product_category : "gadgets"
+				});
+
+			});
+
 
 		});
 	</script>

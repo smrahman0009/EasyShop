@@ -4,10 +4,10 @@
 			<h3>Catagory</h3>
 			<ul style="list-style: none;">
 				
-				<li><a href="#">Mens Wear</a> </li>
-				<li><a href="#">Womens Wear</a></li>
-				<li><a href="#">Kids</a> </li>
-				<li><a href="#">Gadgets</a></li>
+				<li><button id="mens-wear"> Mens Wear</li>
+				<li><button id="wmens-wear">Womens Wear</li>
+				<li><button id="kids">Kids</li>
+				<li><button id="gadgets">Gadgets</li>
 			</ul>
 		</td>
 	';
