@@ -87,7 +87,7 @@ $first_name = $last_name = $phone_no = $password = $email= "";
 						<p>
 							Email*
 						</p>
-						<input type="email" name="email" value="<?php echo $email;?>">
+						<input type="email" name="email" value="<?php echo $email;?>" disabled>
 					</td>
 				</tr>
 				<tr>
