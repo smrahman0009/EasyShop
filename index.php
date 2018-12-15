@@ -13,11 +13,12 @@ session_start();
 	<script>
 		$(document).ready(function (){
 
+			var productCount = 6;
 			var product_category="kids";
 			var search= document.getElementById('search-bar').value;
 
 			$("#show-more").click(function(){
-				var productCount = 6;
+				
 				productCount = productCount + 6;
 				$("#products").load("database_file/load-products.php",{
 					productNewCount : productCount
@@ -28,7 +29,7 @@ session_start();
 			$("#mens-wear").click(function(){
 				
 				$("#products").load("database_file/load-products-ctg.php",{
-					product_category : "mens-wear"
+					product_category : "Mens Wear"
 				});
 
 			});
@@ -36,7 +37,7 @@ session_start();
 			$("#womens-wear").click(function(){
 				
 				$("#products").load("database_file/load-products-ctg.php",{
-					product_category : "womens-wear"
+					product_category : "Womens Wear"
 				});
 
 			});
