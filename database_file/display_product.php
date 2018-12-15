@@ -159,6 +159,43 @@ function adjustCart($product_id,$customer_id){
 			}
 
 }
+
+function readjustcart($product_id,$quantity){
+	$db_server_name = "localhost";
+	$db_user_name = "root";
+	$db_password = "";
+	$db_name = "easyshop";
+	$db_con = mysqli_connect($db_server_name, $db_user_name, $db_password, $db_name);
+
+	
+	$qry = "SELECT quantity FROM order_info where product_id = $product_id ";
+
+	$result = mysqli_query($db_con,$qry);
+
+	////////////// UPDATE PRODUCT QUANTITY IN "order_info" table ///////////////
+
+	$qry = "SELECT quantity FROM order_info where product_id = '$product_id';";
+	$result = mysqli_query($db_con,$qry);
+	//var_dump($result);
+	$row = mysqli_fetch_row($result);
+	$quantity_od = $row[0]-$quantity;
+
+	$qry = "UPDATE order_info SET quantity = '$quantity_od' where product_id = '$product_id';";
+	$result = mysqli_query($db_con,$qry);
+	
+
+
+////////////// UPDATE product_qty IN "product" table ///////////////
+	
+	$qry = "SELECT product_qty FROM product where id = '$product_id';";
+	$result = mysqli_query($db_con,$qry);
+	$row = mysqli_fetch_row($result);
+	$quantity_p = (int)$quantity+(int)$row[0];
+
+	$qry = "UPDATE product SET product_qty = '$quantity_p' where id = '$product_id';";
+	$result = mysqli_query($db_con,$qry);
+		
+}
 	
 //login_auth();
 ?>
