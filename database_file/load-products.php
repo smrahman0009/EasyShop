@@ -32,4 +32,5 @@
 ?>
 <?php $counter++; ?>				
 <?php endforeach; ?>
+
 <?php echo "</table>"; ?>

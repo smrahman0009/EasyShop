@@ -13,12 +13,11 @@ session_start();
 	<script>
 		$(document).ready(function (){
 
-			var productCount = 6;
 			var product_category="kids";
 			var search= document.getElementById('search-bar').value;
 
 			$("#show-more").click(function(){
-				
+				var productCount = 6;
 				productCount = productCount + 6;
 				$("#products").load("database_file/load-products.php",{
 					productNewCount : productCount
