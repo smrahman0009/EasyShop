@@ -32,7 +32,7 @@ session_start();
 <div id="products">
 <?php
 function DisplayProduct(){
-	loadFromProduct("SELECT * FROM product  LIMIT 6;");
+	loadFromProduct("SELECT * FROM product;");
 } 
 
 ?>
