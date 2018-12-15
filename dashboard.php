@@ -97,6 +97,14 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]=="" || $_SESSION["user_ty
 				</tr>
 				<tr>
 					<td>
+						Product brand:
+					</td>
+					<td>
+						<input type="text" name="product_brand" required>
+					</td>
+				</tr>
+				<tr>
+					<td>
 						Description:
 					</td>
 					<td>

@@ -38,6 +38,7 @@ description = '$description' where id = '$id';
 
 DELETE FROM product WHERE user_id = '$id';
 
+SELECT MAX(id) FROM product;
 
 
 
@@ -75,3 +76,15 @@ CREATE TABLE address_info (
 
 INSERT INTO address_info (email_id,city,area,road,house_no,flat_no,postal_code)
 	VALUES ("mushfik@gmail.com","Dhaka","Bashundhara Block C","7","194A","52A",071);
+
+
+//////////////////// (TABLE) brand_info /////////////////////////
+
+CREATE TABLE brand_info (
+	product_id int(11)  PRIMARY KEY not null,
+	brand_name varchar(256) not null
+);
+INSERT INTO brand_info (product_id,brand_name)
+	VALUES (13,"toyhouse");
+
+
