@@ -51,12 +51,12 @@ function DisplayProduct(){
 		$product_qty = $_POST["product_qty"];
 		$description = $_POST['description'];
 
-		echo "id = ".$id . "<br>";
+		/*echo "id = ".$id . "<br>";
 	 	echo "name = ".$_POST['product_name'] . "<br>";
 	 	echo "Price = ".$_POST['product_price'] . "<br>";
 	 	echo "Quantity = ".$product_qty . "<br>";
 	 	echo "Category = ".$_POST['product_category'] . "<br>";
-	 	echo "Description".$_POST['description'] . "<br>";
+	 	echo "Description".$_POST['description'] . "<br>";*/
 	 
 
 	

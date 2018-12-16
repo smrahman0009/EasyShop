@@ -19,9 +19,6 @@ function loadFromProduct($qry){
 
 	if ($qry_result_chk > 0) {
 		while ($rows = mysqli_fetch_assoc($qry_result)) {
-			//echo "First Name: " . $rows["first_name"] . "</br> ";
-			//echo "Last Name: " . $rows["last_name"] . "</br> ";
-			//echo "Phone No: " . $rows["phone_no"] . "</br>";
 			$temp_array = array();
 			$temp_array["id"] = $rows["id"];
 			$temp_array["product_name"] = $rows["product_name"];
@@ -39,6 +36,39 @@ function loadFromProduct($qry){
 	}
 
 }
+
+function CustomerOrder($qry){
+		global $customer_order;
+
+		$db_server_name = "localhost";
+		$db_user_name = "root";
+		$db_password = "";
+		$db_name = "easyshop";
+		$db_con = mysqli_connect($db_server_name, $db_user_name, $db_password, $db_name);
+
+		$customer_id = $_SESSION["email"];
+
+		$qry_result = mysqli_query($db_con,$qry);
+		global $qry_result_chk;
+		$qry_result_chk = mysqli_num_rows($qry_result);
+		$_SESSION["rows"] = $qry_result_chk;
+
+		if ($qry_result_chk > 0) {
+			while ($rows = mysqli_fetch_assoc($qry_result)) {
+				$temp_array = array();
+				$temp_array["product_id"] = $rows["product_id"];
+				$temp_array["quantity"] = $rows["quantity"];
+				$temp_array["product_name"] = $rows["product_name"];
+				$temp_array["product_price"] = $rows["product_price"];
+				$temp_array["product_category"] = $rows["product_category"];
+				$temp_array["product_image"] = $rows["product_image"];
+				$customer_order[] = $temp_array;
+				//echo $rows["customer_id"]. "<br>";
+			}
+		}
+
+}
+
 function loadProfileInfo($qry){
 	global $PersonalInfo;
 
@@ -196,6 +226,5 @@ function readjustcart($product_id,$quantity){
 	$result = mysqli_query($db_con,$qry);
 		
 }
-	
-//login_auth();
+
 ?>

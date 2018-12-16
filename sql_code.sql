@@ -88,3 +88,7 @@ INSERT INTO brand_info (product_id,brand_name)
 	VALUES (13,"toyhouse");
 
 
+
+//////////////////// SQL JOIN QUERY FOR "order_info" && "product" TABLE/////////////////////////
+SELECT order_info.customer_id,order_info.product_id,order_info.quantity,product.product_name,product.product_price,product.product_category
+,product.product_image FROM order_info INNER JOIN product ON order_info.product_id = product.id;
