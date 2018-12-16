@@ -75,6 +75,41 @@ function CustomerOrder($qry){
 
 }
 
+function AdminOrder($qry){
+		global $admin_order;
+
+		$db_server_name = "localhost";
+		$db_user_name = "root";
+		$db_password = "";
+		$db_name = "easyshop";
+		$db_con = mysqli_connect($db_server_name, $db_user_name, $db_password, $db_name);
+
+
+		$qry_result = mysqli_query($db_con,$qry);
+		global $qry_result_chk;
+		$qry_result_chk = mysqli_num_rows($qry_result);
+		$_SESSION["rows"] = $qry_result_chk;
+
+		
+
+		if ($qry_result_chk > 0) {
+			while ($rows = mysqli_fetch_assoc($qry_result)) {
+				$temp_array = array();
+				$temp_array["customer_id"] = $rows["customer_id"];
+				$temp_array["product_id"] = $rows["product_id"];
+				$temp_array["quantity"] = $rows["quantity"];
+				$temp_array["product_name"] = $rows["product_name"];
+				$temp_array["product_category"] = $rows["product_category"];
+				$temp_array["product_price"] = $rows["product_price"];
+				
+				
+				$admin_order[] = $temp_array;
+				//echo $rows["customer_id"]. "<br>";
+			}
+		}
+
+}
+
 function loadProfileInfo($qry){
 	global $PersonalInfo;
 

@@ -7,6 +7,7 @@
 				<li><a href="product_admin.php">PRODUCT INFORMATION</a> </li>
 				<li><a href="dashboard.php">DASHBOARD</a></li>
 				<li><a href="admin.php">ADMIN</a> </li>
+				<li><a href="admin_orderinfo.php">ORDER INFO</a> </li>
 				<li><a href="index.php">HOME</a></li>
 				<li><a href="address_info.php">ADDRESS INFO</a> </li>
 			</ul>
