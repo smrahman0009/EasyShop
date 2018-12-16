@@ -3,6 +3,7 @@
 	$product_info = array();
 	//$product_category = $_POST["product_category"];
 	 $product_category = json_decode($_GET["x"], false);
+	 
 	loadFromProduct("SELECT * FROM product where product_name LIKE '%$product_category%' OR product_category LIKE '%$product_category%' ;");
 	$counter = 1;
 	echo '<table width="100%" cellspacing="6" cellpadding="6">';

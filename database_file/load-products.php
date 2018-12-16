@@ -1,7 +1,8 @@
 <?php
 	require("../database_file/display_product.php");
 	$product_info = array();
-	$productNewCount = $_POST["productNewCount"];
+	//$productNewCount = $_POST["productNewCount"];
+	$productNewCount = json_decode($_GET["x"], false);
 	loadFromProduct("SELECT * FROM product where product_qty > 0 LIMIT $productNewCount;");
 	$counter = 1;
 	echo '<table width="100%" cellspacing="6" cellpadding="6">';

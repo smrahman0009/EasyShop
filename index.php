@@ -9,68 +9,9 @@ session_start();
 <html>
 <head>
 	<title></title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script>
-		$(document).ready(function (){
-
-			var productCount = 6;
-			var product_category="kids";
-			var search= document.getElementById('search-bar').value;
-
-			$("#show-more").click(function(){
-				
-				productCount = productCount + 6;
-				$("#products").load("database_file/load-products.php",{
-					productNewCount : productCount
-				});
-
-			});
-
-			$("#mens-wear").click(function(){
-				
-				$("#products").load("database_file/load-products-ctg.php",{
-					product_category : "Mens Wear"
-				});
-
-			});
-
-			$("#womens-wear").click(function(){
-				
-				$("#products").load("database_file/load-products-ctg.php",{
-					product_category : "Womens Wear"
-				});
-
-			});
-
-			$("#kids").click(function(){
-				
-				$("#products").load("database_file/load-products-ctg.php",{
-					product_category : "kids"
-				});
-
-			});
-			$("#gadgets").click(function(){
-				
-				$("#products").load("database_file/load-products-ctg.php",{
-					product_category : "gadgets"
-				});
-
-			});
-
-			$("#search-button").click(function(){
-				
-				$("#products").load("database_file/load-products-search.php",{
-					product_category : document.getElementById("search-bar").value
-				});
-
-			});
-
-			
-
-});
-
-</script>
+	
 <script type="text/javascript">
+	var	productCount = 6;
 	function mySearch(){
 			var obj, dbParam, xmlhttp;
 			var searchBar = document.getElementById("search").value;
@@ -85,6 +26,80 @@ session_start();
 			xmlhttp.open("GET", "database_file/load-products-search.php?x=" + dbParam, true);
 			xmlhttp.send();
 		}
+	function showMore(){
+			
+			productCount = productCount + 6;
+			var obj, dbParam, xmlhttp;
+			//var searchBar = document.getElementById("search").value;
+			//obj = { "table":"customers", "limit":10 };
+			dbParam = JSON.stringify(productCount);
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) {
+			    document.getElementById("products").innerHTML = this.responseText;
+			  }
+			};
+			xmlhttp.open("GET", "database_file/load-products.php?x=" + dbParam, true);
+			xmlhttp.send();
+		}
+	function MensWear(){
+		var obj, dbParam, xmlhttp;
+			var category = "Mens Wear";
+
+			dbParam = JSON.stringify(category);
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) {
+			    document.getElementById("products").innerHTML = this.responseText;
+			  }
+			};
+			xmlhttp.open("GET", "database_file/load-products-ctg.php?x=" + dbParam, true);
+			xmlhttp.send();
+	}
+
+	function WomensWear(){
+		var obj, dbParam, xmlhttp;
+			var category = "Womens Wear";
+
+			dbParam = JSON.stringify(category);
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) {
+			    document.getElementById("products").innerHTML = this.responseText;
+			  }
+			};
+			xmlhttp.open("GET", "database_file/load-products-ctg.php?x=" + dbParam, true);
+			xmlhttp.send();
+	}
+
+	function Kids(){
+			var obj, dbParam, xmlhttp;
+			var category = "kids";
+
+			dbParam = JSON.stringify(category);
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) {
+			    document.getElementById("products").innerHTML = this.responseText;
+			  }
+			};
+			xmlhttp.open("GET", "database_file/load-products-ctg.php?x=" + dbParam, true);
+			xmlhttp.send();
+	}
+	function Gadgets(){
+			var obj, dbParam, xmlhttp;
+			var category = "gadgets";
+
+			dbParam = JSON.stringify(category);
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) {
+			    document.getElementById("products").innerHTML = this.responseText;
+			  }
+			};
+			xmlhttp.open("GET", "database_file/load-products-ctg.php?x=" + dbParam, true);
+			xmlhttp.send();
+	}
 </script>
 </head>
 <body>
@@ -113,14 +128,11 @@ session_start();
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 
 <td width="55%" valign="top" bgcolor="#d2d8c7">
-<table>
-<th>
-			<td></td><td></td>
-			<td><input type="text" name="search_bar"  id="search" onkeyup ="mySearch()">
-				<button id="search-button">Search
-			</td>
-<th>
-</table>
+
+<div align="right">
+	<input type="text" name="search_bar"  id="search" onkeyup ="mySearch()">
+	<button id="search-button">Search
+</div>
 <div id="products">
 <?php
 	require("database_file/display_product.php");
@@ -150,12 +162,12 @@ session_start();
 							} ?>
 	<?php $counter++; ?>				
 	<?php endforeach; ?>
-	<?php echo "<tr> <td></td> <td >
-		<button style='position:center;' width='100%' id='show-more'>show more </button>
-	</td> <td> </td></tr>"; ?>
 	
 	<?php echo "</table>"; ?>
 									
+</div>
+<div align="center">
+	<button style='position:center;' width='100%' id='show-more' onclick='showMore();'>show more </button>
 </div>
 
 </td>
