@@ -70,6 +70,22 @@ session_start();
 });
 
 </script>
+<script type="text/javascript">
+	function mySearch(){
+			var obj, dbParam, xmlhttp;
+			var searchBar = document.getElementById("search").value;
+			//obj = { "table":"customers", "limit":10 };
+			dbParam = JSON.stringify(searchBar);
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) {
+			    document.getElementById("products").innerHTML = this.responseText;
+			  }
+			};
+			xmlhttp.open("GET", "database_file/load-products-search.php?x=" + dbParam, true);
+			xmlhttp.send();
+		}
+</script>
 </head>
 <body>
 
@@ -97,7 +113,14 @@ session_start();
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 
 <td width="55%" valign="top" bgcolor="#d2d8c7">
-		
+<table>
+<th>
+			<td></td><td></td>
+			<td><input type="text" name="search_bar"  id="search" onkeyup ="mySearch()">
+				<button id="search-button">Search
+			</td>
+<th>
+</table>
 <div id="products">
 <?php
 	require("database_file/display_product.php");
@@ -105,11 +128,7 @@ session_start();
 	loadFromProduct("SELECT * FROM product where product_qty > 0 LIMIT 6;");
 	$counter = 1;
 	echo '<table width="100%" cellspacing="6" cellpadding="6">';
-	echo '<tr>
-			<td></td><td></td>
-			<td><input type="text" name="search_bar" id="search-bar"><button id="search-button">Search
-			</td>
-			</tr>';
+	
 	foreach ($product_info as  $info): ?>
 							<?php 
 								if(($counter % 3) == 1) {    // Check if it's new row
