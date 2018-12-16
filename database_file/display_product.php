@@ -53,15 +53,21 @@ function CustomerOrder($qry){
 		$qry_result_chk = mysqli_num_rows($qry_result);
 		$_SESSION["rows"] = $qry_result_chk;
 
+		$total_price=0;
+
 		if ($qry_result_chk > 0) {
 			while ($rows = mysqli_fetch_assoc($qry_result)) {
 				$temp_array = array();
 				$temp_array["product_id"] = $rows["product_id"];
-				$temp_array["quantity"] = $rows["quantity"];
 				$temp_array["product_name"] = $rows["product_name"];
-				$temp_array["product_price"] = $rows["product_price"];
+				$temp_array["quantity"] = $rows["quantity"];
 				$temp_array["product_category"] = $rows["product_category"];
 				$temp_array["product_image"] = $rows["product_image"];
+
+				$temp_array["product_price"] = $rows["product_price"];
+				$total_price = $total_price + $rows["product_price"]*$rows["quantity"];
+				$temp_array["total_price"] = $total_price;
+				
 				$customer_order[] = $temp_array;
 				//echo $rows["customer_id"]. "<br>";
 			}

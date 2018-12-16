@@ -56,14 +56,12 @@ function DisplayProduct(){
 ?>
 <table border="1px" cellspacing="0" cellpadding="0">
 	<tr>
-		<th>Id</th><th>Image</th><th>Product Title</th> <th>Product Price</th><th>Quantity</th><th>Category</th>
+		<th>Image</th><th>Product Title</th> <th>Unit Price</th><th>Quantity</th><th>Category</th>
 	</tr>
-	<?php foreach ($customer_order as $info) { ?>
+	<?php foreach ($customer_order as $info) { $total_price = $info["total_price"]; ?>
 		<form action="<?php $_SERVER["PHP_SELF"] ?>" method="post" name="load">
 			<tr>
-				<td>
-					<input type="text" name="id" value="<?php echo($info['product_id'])?>" size="1">
-				</td>
+				
 				<td>
 					<img src="<?php echo($info['product_image'])?>" height="100px" height="100px">
 				</td>
@@ -83,6 +81,14 @@ function DisplayProduct(){
 			</tr>
 		</form>
 	<?php } ?>
+		<tr>
+			<td>
+				<p>Total Price = </p>
+			</td>
+			<td>
+				<input type="text" name="total_price" value="<?php echo $info['total_price']; ?>">
+			</td>
+		</tr>
 </table>
 									
 </div>
