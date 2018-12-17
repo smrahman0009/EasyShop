@@ -100,7 +100,7 @@ function DisplayProduct(){
 					</select>
 				</td>
 				<td>
-					<textarea rews="50" cols="10" name="description" required>
+					<textarea rows="8" cols="25" name="description" required>
 						<?php echo $info['description']; ?>
 					</textarea>
 				</td>
