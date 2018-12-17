@@ -31,17 +31,17 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]=="" || $_SESSION["user_ty
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
 		<table height="100%" width="100%">
 			<tr>
-				<td height="100%">
-					<h2>Users Info: </h2>
-					<hr>
-					<iframe src="info/user_info.php" width="70%" height="60%" align="center"></iframe>
+				<td height="100%" align="center">
+					<h2>WELCOME ADMIN PANEL</h2>
+					
+					
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<h2>Product Info</h2>
+					
 				<hr>
-				<iframe src="info/product_info.php" width="70%" height="60%" align="center"></iframe>
+				
 				</td>
 			</tr>
 		</table>
