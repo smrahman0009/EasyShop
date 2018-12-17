@@ -278,3 +278,70 @@ function LoginValidation(){
 		}
 		return true;
 	}
+
+
+function update_address(){
+		//alert("HEY don't press the key");
+		/////////////// Validate city ////////////////////////
+		var city = document.getElementById("ucity").value;
+		var city_reg = /^[A-Z][a-z]+$/;
+		var city_reg_result = city_reg.test(city);
+
+		if (city=="") {alert("city required");}
+
+		/////////////// Validate area_no ////////////////////////
+		var area_no = document.getElementById("uarea").value;
+		var area_no_reg= /^[A-Za-z0-9 ]+$/;
+		var area_no_reg_result = area_no_reg.test(area_no);
+
+		/////////////// Validate road_no Numbers ////////////////////////
+		var road_no = document.getElementById("uroad-no").value;
+		var road_no_reg = /^[0-9a-zA-Z]+$/;
+		var road_no_reg_result = road_no_reg.test(road_no);
+
+		/////////////// Validate house_no ////////////////////////
+		var house_no = document.getElementById("uhouse-no").value;
+		var house_no_reg = /^[0-9a-zA-Z]+$/i;
+		var house_no_reg_result = house_no_reg.test(house_no);
+
+		/////////////// Validate flat_no ////////////////////////
+		/////////////// Must contain a lowercase, uppercase letter and a number//
+		var flat_no = document.getElementById("uflat-no").value;  
+		var flat_no_reg = /^[0-9a-zA-Z]+$/;
+		var flat_no_reg_result = flat_no_reg.test(flat_no);
+
+		/////////////// Postal Code ////////////////////////
+		var postal_no = document.getElementById("upostal-code").value;
+		var postal_no_reg = /^[0-9]+$/;
+		var postal_no_reg_result = postal_no_reg.test(postal_no);
+
+		if (city=="") { alert("city name required"); return false;}
+		else if (area_no == "") {alert("city name required"); return false;}
+		else if (road_no =="") {alert("Road name required"); return false;}
+		else if (house_no == "") {alert("House no required"); return false;}
+		else if (flat_no =="") {alert("Flat no required"); return false;}
+
+		else if (city_reg_result == false) {
+			alert("Invalid city name");
+			return false;
+		}
+		else if (area_no_reg_result == false) {
+			alert("Invalid area name ");
+			return false;
+		}
+		else if (road_no_reg_result == false) {
+			alert("Invalid road name");
+			return false;
+		}
+		else if (house_no_reg_result == false) {
+			alert("invalid house no");
+			return false;
+		}
+		else if (flat_no_reg_result == false) {
+			alert("invalid flat no");
+			return false;
+		}
+		
+		
+		return true;
+	}
