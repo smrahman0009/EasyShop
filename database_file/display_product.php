@@ -72,6 +72,10 @@ function CustomerOrder($qry){
 				//echo $rows["customer_id"]. "<br>";
 			}
 		}
+		else {
+			header("Location:index.php");
+			exit();
+		}
 
 }
 
