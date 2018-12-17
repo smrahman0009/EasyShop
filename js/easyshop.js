@@ -291,7 +291,7 @@ function update_address(){
 
 		/////////////// Validate area_no ////////////////////////
 		var area_no = document.getElementById("uarea").value;
-		var area_no_reg= /^[A-Za-z0-9 ]+$/;
+		var area_no_reg= /^[A-Z][A-Za-z0-9 ]+$/;
 		var area_no_reg_result = area_no_reg.test(area_no);
 
 		/////////////// Validate road_no Numbers ////////////////////////
@@ -305,7 +305,6 @@ function update_address(){
 		var house_no_reg_result = house_no_reg.test(house_no);
 
 		/////////////// Validate flat_no ////////////////////////
-		/////////////// Must contain a lowercase, uppercase letter and a number//
 		var flat_no = document.getElementById("uflat-no").value;  
 		var flat_no_reg = /^[0-9a-zA-Z]+$/;
 		var flat_no_reg_result = flat_no_reg.test(flat_no);
