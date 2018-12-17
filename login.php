@@ -59,7 +59,7 @@ if(isset($_REQUEST["error"]))//echo $_REQUEST["error"];
 ?>
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
-		<form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>" >
+		<form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
 			<table align="center">
 				<tr >
 					<td>
@@ -77,7 +77,7 @@ if(isset($_REQUEST["error"]))//echo $_REQUEST["error"];
 				</tr>
 				<tr>
 					<td>
-						<input type="submit" name="lg_button" value="Login" onclick="validate();">
+						<input type="submit" name="lg_button" value="Login" onclick="LoginValidation();">
 					</td>
 					<td>
 						Forgot <a href="#">Password</a>
@@ -96,35 +96,8 @@ if(isset($_REQUEST["error"]))//echo $_REQUEST["error"];
 				</tr>
 			</table>
 		</form>
-<script>
-	function validate(){
-		
-		///////////////// EMAIL //////////////////////////
-		var email = document.getElementById("email").value;
-		var email_reg = /^[^@]+@[^@.]+\.[a-z]+$/i;
-		var email_reg_result = email_reg.test(email);
-
-
-		/////////////// Validate Password ////////////////////////
-		/////////////// Must contain a lowercase, uppercase letter and a number//
-		var password = document.getElementById("password").value;  
-		var password_reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/;
-		var password_reg_result = password_reg.test(password);
-
-		if (email == "" || password =="") {
-			alert("empty user name or password");
-			return false;
-		}
-		else if (email_reg_result == false) {
-			alert("Shoul be valid email address");
-			return false;
-		}
-		else if (password_reg_result == false) {
-			alert("invalid password");
-			return false;
-		}
-		else alert("valid data");
-	}
+<script src="js/easyshop.js">
+	
 </script>
 	</td>
 

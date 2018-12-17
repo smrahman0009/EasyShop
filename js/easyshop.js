@@ -1,3 +1,4 @@
+//////////////////////// SIGN  UP /////////////////////////////////////////////
 function validate_form(){
 		/////////////// Validate first_name ////////////////////////
 		var first_name = document.getElementById("first-name").value;
@@ -65,4 +66,132 @@ function validate_form(){
 		
 		return false;
 	}
+//////////// JSON && AJAX ////////////////////////////////////////////////
+	var	productCount = 6;
+	function mySearch(){
+			var obj, dbParam, xmlhttp;
+			var searchBar = document.getElementById("search").value;
+			//obj = { "table":"customers", "limit":10 };
+			dbParam = JSON.stringify(searchBar);
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) {
+			    document.getElementById("products").innerHTML = this.responseText;
+			  }
+			};
+			xmlhttp.open("GET", "database_file/load-products-search.php?x=" + dbParam, true);
+			xmlhttp.send();
+		}
+	function showMore(){
+			
+			productCount = productCount + 6;
+			var obj, dbParam, xmlhttp;
+			//var searchBar = document.getElementById("search").value;
+			//obj = { "table":"customers", "limit":10 };
+			dbParam = JSON.stringify(productCount);
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) {
+			    document.getElementById("products").innerHTML = this.responseText;
+			  }
+			};
+			xmlhttp.open("GET", "database_file/load-products.php?x=" + dbParam, true);
+			xmlhttp.send();
+		}
+	function MensWear(){
+		var obj, dbParam, xmlhttp;
+			var category = "Mens Wear";
 
+			dbParam = JSON.stringify(category);
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) {
+			    document.getElementById("products").innerHTML = this.responseText;
+			  }
+			};
+			xmlhttp.open("GET", "database_file/load-products-ctg.php?x=" + dbParam, true);
+			xmlhttp.send();
+	}
+
+	function WomensWear(){
+		var obj, dbParam, xmlhttp;
+			var category = "Womens Wear";
+
+			dbParam = JSON.stringify(category);
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) {
+			    document.getElementById("products").innerHTML = this.responseText;
+			  }
+			};
+			xmlhttp.open("GET", "database_file/load-products-ctg.php?x=" + dbParam, true);
+			xmlhttp.send();
+	}
+
+	function Kids(){
+			var obj, dbParam, xmlhttp;
+			var category = "kids";
+
+			dbParam = JSON.stringify(category);
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) {
+			    document.getElementById("products").innerHTML = this.responseText;
+			  }
+			};
+			xmlhttp.open("GET", "database_file/load-products-ctg.php?x=" + dbParam, true);
+			xmlhttp.send();
+	}
+	function Gadgets(){
+			var obj, dbParam, xmlhttp;
+			var category = "gadgets";
+
+			dbParam = JSON.stringify(category);
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) {
+			    document.getElementById("products").innerHTML = this.responseText;
+			  }
+			};
+			xmlhttp.open("GET", "database_file/load-products-ctg.php?x=" + dbParam, true);
+			xmlhttp.send();
+	}
+
+
+
+
+
+
+
+///////////////////////////// LOGIN VALIDATION //////////////////////////////
+
+
+
+function LoginValidation(){
+		
+		///////////////// EMAIL //////////////////////////
+		var email = document.getElementById("email").value;
+		var email_reg = /^[^@]+@[^@.]+\.[a-z]+$/i;
+		var email_reg_result = email_reg.test(email);
+
+
+		/////////////// Validate Password ////////////////////////
+		/////////////// Must contain a lowercase, uppercase letter and a number//
+		var password = document.getElementById("password").value;  
+		var password_reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/;
+		var password_reg_result = password_reg.test(password);
+
+		if (email == "" || password =="") {
+			alert("empty user name or password");
+			return false;
+		}
+		else if (email_reg_result == false) {
+			alert("Shoul be valid email address");
+			return false;
+		}
+		else if (password_reg_result == false) {
+			alert("invalid password");
+			return false;
+		}
+		else alert("Login Successfull");
+	}
