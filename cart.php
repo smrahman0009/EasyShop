@@ -113,8 +113,8 @@ if (isset($_POST['pid'])) {
 		foreach ($_SESSION["cart_array"]["$key_to_remove"] as $value) {
 	 		$quantity= $value;
 	 	}
-	 	echo $product_id . "<br>";
-	 	echo $quantity . "<br>";
+	 	//echo $product_id . "<br>";
+	 //	echo $quantity . "<br>";
 	 	readjustcart($product_id,$quantity);
 		if (count($_SESSION["cart_array"]) <= 1 ) {
 			unset($_SESSION["cart_array"]);
