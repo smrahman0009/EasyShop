@@ -87,7 +87,7 @@ if(isset($_REQUEST["error"]))//echo $_REQUEST["error"];
 					<td style="color: red;">
 						
 						<?php
-						if (isset($_REQUEST["error"])) {
+						 if (isset($_REQUEST["error"])) {
 							echo $_REQUEST["error"];
 						}
 						

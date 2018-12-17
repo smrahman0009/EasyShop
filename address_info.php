@@ -29,6 +29,8 @@ if (isset($_POST["submit_button"]) && $_SERVER["REQUEST_METHOD"] =="POST") {
 	 ( '$email_id','$city','$area','$road','$house_no','$flat_no',$postal_code);";
 
 	insertIntoPersonalInfo($query);
+	header("Location:profile.php");
+	exit();
 }
 
 	

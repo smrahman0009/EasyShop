@@ -114,6 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$query = "INSERT INTO sign_in_info (email,pwd,user_type)VALUES ('$email','$pwd_hash','$user_type');";
 
 	insertIntoSignUpInfo($query);
+	header("Location:address_info.php");
 	}
 	
 			   

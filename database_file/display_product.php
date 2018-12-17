@@ -73,8 +73,8 @@ function CustomerOrder($qry){
 			}
 		}
 		else {
-			header("Location:index.php");
-			exit();
+			//header("Location:index.php");
+			//exit();
 		}
 
 }
