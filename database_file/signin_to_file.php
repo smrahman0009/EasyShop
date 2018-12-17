@@ -43,6 +43,7 @@ function loadFromAddressInfo($qry){
 	if ($qry_result_chk > 0) {
 		while ($rows = mysqli_fetch_assoc($qry_result)) {
 			$temp_array = array();
+			$temp_array["email_id"] = $rows["email_id"];
 			$temp_array["city"] = $rows["city"];
 			$temp_array["area"] = $rows["area"];
 			$temp_array["road"] = $rows["road"];

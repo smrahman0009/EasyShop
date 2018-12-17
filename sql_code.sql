@@ -100,3 +100,8 @@ SELECT order_info.customer_id,order_info.product_id,order_info.quantity,product.
 SELECT order_info.customer_id,order_info.product_id,order_info.quantity,product.product_name,
 product.product_price,product.product_category
 FROM order_info INNER JOIN product ON order_info.product_id = product.id;
+
+
+///////////////////////// SQL JOIN QUERY FOR "order_info" && "address_info"/////////////////
+SELECT address_info.email_id,address_info.city,address_info.area,address_info.road,address_info.house_no,address_info.flat_no,address_info.postal_code FROM
+address_info inner JOIN order_info WHERE address_info.email_id = order_info.customer_id
