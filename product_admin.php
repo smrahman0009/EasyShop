@@ -77,7 +77,7 @@ function DisplayProduct(){
 		<th>Id</th><th>Image</th><th>Product Title</th> <th>Product Price</th><th>Quantity</th><th>Category</th><th>Description</th><th>Update</th><th>Delete</th>
 	</tr>
 	<?php foreach ($product_info as $info) { ?>
-		<form action="<?php $_SERVER["PHP_SELF"] ?>" method="post" name="load">
+		<form action="<?php $_SERVER["PHP_SELF"] ?>" method="post" name="load" onsubmit="ProductAdmin();">
 			<tr>
 				<td>
 					<input type="text" name="id" value="<?php echo($info['id'])?>" size="1">
@@ -86,20 +86,21 @@ function DisplayProduct(){
 					<img src="<?php echo($info['product_image'])?>" height="100px" height="100px">
 				</td>
 				<td>
-					<input type="text" name="product_name" value="<?php echo $info['product_name']; ?>">
+					<input type="text" name="product_name" value="<?php echo $info['product_name']; ?>"
+					required>
 				</td>
 				<td>
-					<input type="text" name="product_price" value="<?php echo $info['product_price']; ?>">
+					<input type="text" name="product_price" value="<?php echo $info['product_price']; ?>" required>
 				</td>
 				<td>
-					<input type="number" min="0" max="20" name="product_qty" value="<?php echo $info['product_qty']; ?>"></td>
+					<input type="number" min="0" max="20" name="product_qty" value="<?php echo $info['product_qty']; ?>" required></td>
 				<td>
 					<select name="product_category">
 						<option name='<?php echo $info["product_category"]; ?>'><?php echo $info["product_category"]; ?></option>
 					</select>
 				</td>
 				<td>
-					<textarea rews="50" cols="10" name="description">
+					<textarea rews="50" cols="10" name="description" required>
 						<?php echo $info['description']; ?>
 					</textarea>
 				</td>
@@ -113,7 +114,7 @@ function DisplayProduct(){
 		</form>
 	<?php } ?>
 </table>
-									
+	<script type="text/javascript" src="js/easyshop.js"></script>									
 </div>
 
 </td>

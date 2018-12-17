@@ -38,13 +38,13 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]=="" || $_SESSION["user_ty
 
 	<!-- ============ MIDDLE COLUMN (CONTENT) ============== -->
 	<td width="55%" valign="top" bgcolor="#d2d8c7">
-		<form method="post" action="upload.php" enctype="multipart/form-data">
+		<form method="post" action="upload.php" enctype="multipart/form-data" onsubmit="return dbValidation();">
 			<table>
 				<tr>
 					<td rowspan="6">
 						<img src="<?php  echo $_SESSION['ln'] ?>" width="20%" height="20%">
 						<hr>
-						<input type="file" name="file">
+						<input type="file" name="file" required id="file-pic">
 					</td>
 				</tr>
 				<tr>
@@ -73,7 +73,7 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]=="" || $_SESSION["user_ty
 						Name:
 					</td>
 					<td>
-						<input type="text" name="product_name" required>
+						<input type="text" name="product_name" id="product-name" required>
 						<span class="error">* <?php echo $pro_name_er; ?></span>
 					</td>
 				</tr>
@@ -82,7 +82,7 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]=="" || $_SESSION["user_ty
 						Price:
 					</td>
 					<td>
-						<input type="text" name="product_price" required>
+						<input type="number" min="0" max="200000"  name="product_price" id="product-price" required>
 						<span class="error">* <?php echo $pro_price_er; ?></span>
 					</td>
 				</tr>
@@ -91,7 +91,7 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]=="" || $_SESSION["user_ty
 						Product quantity:
 					</td>
 					<td>
-						<input type="text" name="product_qty" required>
+						<input type="text" name="product_qty" id="product-qty" required>
 						<span class="error">* <?php echo $pro_quantity_er; ?></span>
 					</td>
 				</tr>
@@ -100,7 +100,7 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]=="" || $_SESSION["user_ty
 						Product brand:
 					</td>
 					<td>
-						<input type="text" name="product_brand" required>
+						<input type="text" name="product_brand" id="product-brand" required>
 					</td>
 				</tr>
 				<tr>
@@ -108,19 +108,19 @@ if(isset($_SESSION["flag"])==NULL && $_SESSION["flag"]=="" || $_SESSION["user_ty
 						Description:
 					</td>
 					<td>
-						<textarea name="description" rows="10" cols="40" required></textarea> 
+						<textarea name="description" rows="10" cols="40" id="description" required></textarea> 
 						<span class="error">* <?php echo $pro_description_er; ?></span>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="submit" name="submit" width="100px" height="30%" value="ADD">
+						<input type="submit" name="submit" width="200px" height="30%" value="ADD">
 					</td>
 				</tr>
 			</table>
 		</form>
 	</td>
-
+<script type="text/javascript" src="js/easyshop.js"></script>
 </tr>
 
 <!-- ============ FOOTER SECTION ============== -->

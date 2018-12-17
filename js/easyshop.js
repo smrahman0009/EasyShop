@@ -195,3 +195,86 @@ function LoginValidation(){
 		}
 		else alert("Login Successfull");
 	}
+
+
+	////////////////////// dashboard valdiation/////////////////////////
+	function dbValidation(){
+		var file_pic = document.getElementById("file-pic").value;
+		var product_name = document.getElementById("product-name").value;
+		var product_price = document.getElementById("product-price").value;
+		var product_qty = document.getElementById("product-qty").value;
+		var product_brand = document.getElementById("product-brand").value;
+		var description = document.getElementById("description").value;
+
+		if (product_name == "") {
+			alert("Product Name required");
+			return false;
+		}
+		else if (file_pic == "") {
+			alert("Product image required");
+			return false;
+		}
+		else if (product_price == "") {
+			alert("Product price required");
+			return false;
+		}
+		else if (product_qty == "") {
+			alert("Product quantity required");
+			return false;
+		}
+		else if (product_brand == "") {
+			alert("Product brand required");
+			return false;
+		}
+		else if (description == "") {
+			alert("Product description required");
+			return false;
+		}
+	}
+
+	function ProductAdmin(){
+		//alert("I am clidked");
+		/////////////// Validate product name ////////////////////////
+		var product_name = document.getElementById("product-name").value;
+		var product_name_reg= /^[A-Za-z]+$/;
+		var product_name_reg_result = product_name_reg.test(product_name);
+
+		/////////////// Validate product price ////////////////////////
+		var product_price = document.getElementById("product-price").value;
+		var product_price_reg = /^[0-9.]+$/;
+		var product_price_reg_result = product_price_reg.test(product_price);
+
+		/////////////// Validate product_qty ////////////////////////
+		var product_qty = document.getElementById("product-qty").value;
+		var product_qty_reg = /^[0-9]+$/;
+		var product_qty_reg_result = product_qty_reg.test(product_qty);
+
+		/////////////// Validate product description ////////////////////////
+
+		var description = document.getElementById("description").value;  
+		var description_reg = /^[a-zA-Z0-9 ]+$/;
+		var description_reg_result = description_reg.test(description);
+
+	
+		if (product_name_reg_result == false) {
+			alert("invalid product name");
+			return false;
+		}
+		else if (product_price_reg_result == false) {
+			alert("invalid price");
+			return false;
+		}
+		else if ( product_qty_reg_result == false) {
+			alert("invalid quantity");
+			return false;
+		}
+		else if ( product_qty_reg_result == false) {
+			alert("invalid quantity");
+			return false;
+		}
+		else if ( description == "") {
+			alert("description required");
+			return false;
+		}
+		return true;
+	}
