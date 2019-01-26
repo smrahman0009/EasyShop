@@ -94,6 +94,8 @@ if (isset($_POST['pid'])) {
 	///////////////// MAKE EMPTY SHOPING CART /////////////////////
 	if (isset($_GET["cmd"]) && $_GET["cmd"] == "emptycart" ) {
 		unset($_SESSION["cart_array"]);
+		header("Location:orderinfo.php");
+		exit(); 
 	}
 ?>
 <?php
@@ -192,12 +194,12 @@ if (isset($_POST['pid'])) {
 <table>
 	<tr>
 		<td>
-			<?php echo $total_price ?>
+			<?php echo "Total Price = ".$total_price ?>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<a href='cart.php?cmd=emptycart'>EMPTY SHOPPING CART</a>
+			<a href='cart.php?cmd=emptycart'>Confirm Order</a>
 		</td>
 	</tr>
 </table>
